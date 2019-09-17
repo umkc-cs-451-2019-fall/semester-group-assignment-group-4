@@ -10,7 +10,7 @@ a.	Download if not yet installed
 4)	Launch SSMS, the SQL server instance that was just recently installed should be displayed as Server Name (should be your pc’s name)
 a.	If it is not default set then click the drop down -> browse -> Database Engine -> should be the only option
 5)	Connect
-6)	Right click ‘Databases’ folder -> New Database -> Give it a name then okay
+6)	Right click ‘Databases’ folder -> New Database -> Name it CCG4
 
 Install and Setup Source Tree:
 Source tree is a GUI for github, it facilitates branching and committing.
