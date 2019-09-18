@@ -1,0 +1,14 @@
+Downlaod the following extensions for visual studio:
+
+Open visual studio
+select option of "continue without code"
+on top tool bar, click on "extensions"
+a new window will pop up, select the "online" option
+click on the search bar and find the following extensions
+  "web essentials 2019"
+  click on download
+  "visual studio productivity power tool 2019"
+  click on download
+  "resharper"
+  this one will say trial in the bottom left. If you have a jetbrains account, it will convert to the student adition. when you click download
+  it will pop open your internet browser and then the "run/save/cancel" option for the file at the bottom of the screen. click run.
