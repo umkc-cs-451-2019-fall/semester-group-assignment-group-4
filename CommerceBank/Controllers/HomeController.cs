@@ -1,30 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using CommerceBank.Models;
 
 namespace CommerceBank.Controllers
 {
-    public class HomeController : Controller
+    [ApiController]
+    [Route("[controller]/[action]")]
+    public class HomeController: ControllerBase
     {
-        public ActionResult Index()
+        private readonly ILogger<HomeController> _logger;
+        public HomeController(ILogger<HomeController> logger)
         {
-            return View();
+            _logger = logger;
         }
 
-        public ActionResult About()
+        /// <summary>
+        /// This function will return an enumerable array to the Home page that will have the 
+        /// Initial load data for the table that is displayed
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IEnumerable<TransactionModel> GetInitialLoadTransactionData()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            TransactionModel T1 = new TransactionModel
+            {
+                id = 1,
+                amount = 20.99,
+                date = DateTime.Now.ToString("d"),
+                details = "UMKC SU"
+            };
+            TransactionModel T2 = new TransactionModel
+            {
+                id = 2,
+                amount = 50.99,
+                date = DateTime.Now.ToString("d"),
+                details = "Internet Provider"
+            };
+            List<TransactionModel> MockTransactionData = new List<TransactionModel>();
+            MockTransactionData.Add(T1);
+            MockTransactionData.Add(T2);
+            return MockTransactionData.ToArray();
         }
     }
 }
