@@ -47,8 +47,8 @@ export class Home extends Component {
         let contents = this.state.loading ? <p><em>Loading...</em></p> : Home.renderTransactionTable(this.state.TransactionData);
         return (
             <div>
-                <h1 id="tabelLabel" >Hi, Team</h1>
-                <p>This is the Home page, below is a sample table</p>
+                <h1 id="tabelLabel" >Hi, Class!</h1>
+                <p>This is the sample Home page for a customer, below is a sample table of transaction data</p>
                 {contents}
             </div>
         );
