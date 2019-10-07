@@ -28,7 +28,9 @@ namespace CommerceBank.Controllers
         {
             TransactionModel T1 = new TransactionModel
             {
+
                 id = 1,
+                account = 211111110,
                 amount = 20.99,
                 date = DateTime.Now.ToString("d"),
                 details = "UMKC SU"
@@ -36,6 +38,7 @@ namespace CommerceBank.Controllers
             TransactionModel T2 = new TransactionModel
             {
                 id = 2,
+                account = 411111111,
                 amount = 50.99,
                 date = DateTime.Now.ToString("d"),
                 details = "Internet Provider"

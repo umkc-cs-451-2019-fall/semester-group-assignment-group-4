@@ -15,17 +15,24 @@ export class Home extends Component {
             <table className='table table-striped' aria-labelledby="tableLable">
                 <thead>
                     <tr>
+                        <th> Date</th>
+                        <th> Transaction ID</th>
+                        <th> Description</th>
                         <th> Amount</th>
-                        <th> Date </th>
-                        <th> Details </th>
+                        <th> Account Number</th>
+               
                     </tr>
                 </thead>
                 <tbody>
                     {TransactionData.map(Transaction =>
-                        <tr key={Transaction.id}>
-                            <td>{Transaction.amount}</td>
+                        <tr key={Transaction.id}>           
                             <td>{Transaction.date}</td>
+                            <td>{Transaction.id}</td>
                             <td>{Transaction.details}</td>
+                            <td>{Transaction.amount}</td>
+                            <td>{Transaction.account}</td>
+                            
+                            
                         </tr>
                     )}
                 </tbody>
@@ -35,13 +42,13 @@ export class Home extends Component {
     render()
     {
         //Quick Note the below is an assigment based on a conditional statement
-        // contets = (if this.state.loading = false then it equals <p> ..</p>
+        // contents = (if this.state.loading = false then it equals <p> ..</p>
         // else it equals the transaction table function data found above)
         let contents = this.state.loading ? <p><em>Loading...</em></p> : Home.renderTransactionTable(this.state.TransactionData);
         return (
             <div>
-                <h1 id="tabelLabel" >Hi, Team</h1>
-                <p>This is the Home page, below is a sample table</p>
+                <h1 id="tabelLabel" >Hi, Class!</h1>
+                <p>This is the sample Home page for a customer, below is a sample table of transaction data</p>
                 {contents}
             </div>
         );
