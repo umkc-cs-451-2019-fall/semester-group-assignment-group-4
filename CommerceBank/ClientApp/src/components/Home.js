@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { CollapsibleComponent } from './shared/CollapsibleComponent';
 export class Home extends Component {
     static displayName = Home.name;
     constructor(props) {
@@ -31,8 +31,6 @@ export class Home extends Component {
                             <td>{Transaction.details}</td>
                             <td>{Transaction.amount}</td>
                             <td>{Transaction.account}</td>
-                            
-                            
                         </tr>
                     )}
                 </tbody>
@@ -50,6 +48,9 @@ export class Home extends Component {
                 <h1 id="tabelLabel" >Hi, Class!</h1>
                 <p>This is the sample Home page for a customer, below is a sample table of transaction data</p>
                 {contents}
+                <div class="homeContainterDiv">
+                    <CollapsibleComponent header="Spending" content={contents} />
+                </div>
             </div>
         );
     }
