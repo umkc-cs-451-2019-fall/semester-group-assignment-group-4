@@ -47,9 +47,14 @@ export class Home extends Component {
             <div>
                 <h1 id="tabelLabel" >Hi, Class!</h1>
                 <p>This is the sample Home page for a customer, below is a sample table of transaction data</p>
-                {contents}
                 <div class="homeContainterDiv">
-                    <CollapsibleComponent header="Spending" content={contents} />
+                    <CollapsibleComponent header="Transactions" content={contents} componentID="1" />
+                </div>
+                <div class="homeContainterDiv">
+                    <CollapsibleComponent header="Reports" content={contents} componentID="2"/>
+                </div>
+                <div class="homeContainterDiv">
+                    <CollapsibleComponent header="Notifications" content={contents} componentID="3"/>
                 </div>
             </div>
         );

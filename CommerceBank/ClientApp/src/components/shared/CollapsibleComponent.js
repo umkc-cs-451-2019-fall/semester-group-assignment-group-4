@@ -8,8 +8,10 @@ export class CollapsibleComponent extends Component {
     componentDidMount() { }
 
     expandOrCollapse() {
-        var collapsibleDiv = document.getElementById("hiddenDiv");
-        var arrowIcon = document.getElementById("expandOrCollapseIcon");
+        var iconID = "expandOrCollapseIcon" + this.props.componentID;
+        var hiddenDiv = "hiddenDiv" + this.props.componentID;
+        var collapsibleDiv = document.getElementById(hiddenDiv);
+        var arrowIcon = document.getElementById(iconID);
         //Collapse
         if (collapsibleDiv.style.display === "block") {
             arrowIcon.className = "right";
@@ -25,9 +27,9 @@ export class CollapsibleComponent extends Component {
     }
     render() {
         return (
-            <div id="CollapsibleComponent">
-                <button type="button" class="collapsible" onClick={this.expandOrCollapse}>{this.props.header}<i class="right" id="expandOrCollapseIcon"></i></button>
-                <div class="content" id="hiddenDiv">
+            <div class="CollapsibleComponent">
+                <button type="button" class="collapsible" onClick={this.expandOrCollapse.bind(this)}>{this.props.header}<i class="right" id={"expandOrCollapseIcon" + this.props.componentID}></i></button>
+                <div class="content" id={"hiddenDiv" + this.props.componentID}>
                     {this.props.content}
                 </div>
             </div>
