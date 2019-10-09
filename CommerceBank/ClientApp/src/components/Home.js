@@ -60,7 +60,7 @@ export class Home extends Component {
                     <CollapsibleComponent header="Reports" content={contents1} componentID="2"/>
                 </div>
                 <div class="homeContainterDiv">
-                    <CollapsibleComponent header="Notifications" content={contents} componentID="3"/>
+                    <CollapsibleComponent header="Custom Alerts" content={contents} componentID="3"/>
                 </div>
             </div>
         );
