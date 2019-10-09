@@ -4,8 +4,7 @@ export class Home extends Component {
     static displayName = Home.name;
     constructor(props) {
         super(props)
-        this.state = { TransactionData: [], loading: true };
-        this.state = { SavingsData: [], loading: true };
+        this.state = {TransactionData: [], SavingsData: [], loading: true };
     }
 
     componentDidMount() {
