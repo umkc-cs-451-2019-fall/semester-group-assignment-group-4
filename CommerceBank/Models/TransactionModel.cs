@@ -9,7 +9,7 @@ namespace CommerceBank.Models
     {
         public int id { get; set; } // Should probably change to string since we don't do math on it - KH
         public string account { get; set; } // Changed to string because sample data has a long and an int - KH
-        public double amount { get; set; }
+        public string amount { get; set; }
         public string date { get; set; }
         public string details { get; set; }
 

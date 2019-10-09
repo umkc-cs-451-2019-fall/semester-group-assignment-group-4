@@ -31,7 +31,7 @@ namespace CommerceBank.Controllers
 
                 id = 1,
                 account = "411111111",
-                amount = 200.00,
+                amount = "-200.00",
                 date = "11/02/16",
                 details = "Verizon",
                 action = 1
@@ -40,7 +40,7 @@ namespace CommerceBank.Controllers
             {
                 id = 2,
                 account = "411111111",
-                amount = 18.24,
+                amount = "-18.24",
                 date = "11/02/16",
                 details = "Panda Express",
                 action = 1
@@ -49,7 +49,7 @@ namespace CommerceBank.Controllers
             {
                 id = 3,
                 account = "411111111",
-                amount = 64.03,
+                amount = "-64.03",
                 date = "11/02/16",
                 details = "CVS",
                 action = 1
@@ -58,7 +58,7 @@ namespace CommerceBank.Controllers
             {
                 id = 4,
                 account = "411111111",
-                amount = 122.08,
+                amount = "-122.08",
                 date = "11/02/16",
                 details = "Maurices",
                 action = 1
@@ -67,7 +67,7 @@ namespace CommerceBank.Controllers
             {
                 id = 5,
                 account = "411111111",
-                amount = 26.11,
+                amount = "-26.11",
                 date = "11/02/16",
                 details = "QuikTrip",
                 action = 1
@@ -95,7 +95,7 @@ namespace CommerceBank.Controllers
             {
                 id = 6,
                 account = "8222222228",
-                amount = 25.00,
+                amount = "25.00",
                 date = "11/01/16",
                 details = "Cash Deposit",
                 action = 0
@@ -104,7 +104,7 @@ namespace CommerceBank.Controllers
             {
                 id = 7,
                 account = "8222222228",
-                amount = 200.00,
+                amount = "200.00",
                 date = "11/16/16",
                 details = "Transfer from savings - Mom loves you!!",
                 action = 0
@@ -113,7 +113,7 @@ namespace CommerceBank.Controllers
             {
                 id = 8,
                 account = "8222222228",
-                amount = 25.00,
+                amount = "25.00",
                 date = "11/16/16",
                 details = "Cash Deposit",
                 action = 0
@@ -122,7 +122,7 @@ namespace CommerceBank.Controllers
             {
                 id = 9,
                 account = "8222222228",
-                amount = 100.00,
+                amount = "100.00",
                 date = "11/29/16",
                 details = "Transfer from savings",
                 action = 0
@@ -131,7 +131,7 @@ namespace CommerceBank.Controllers
             {
                 id = 10,
                 account = "8222222228",
-                amount = 300.00,
+                amount = "300.00",
                 date = "11/30/16",
                 details = "Transfer from savings",
                 action = 0
