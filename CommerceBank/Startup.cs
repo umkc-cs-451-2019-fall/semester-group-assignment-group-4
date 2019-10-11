@@ -22,6 +22,7 @@ namespace CommerceBank
         {
 
             services.AddControllersWithViews();
+            services.AddDbContext<CCG4Db>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
