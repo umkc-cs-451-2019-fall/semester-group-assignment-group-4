@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using CommerceBank.Models.Database;
 
@@ -20,8 +16,8 @@ namespace CommerceBank.Services
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //use the connection string provided in the appsettings.Develoment.json file
-            optionsBuilder.UseSqlServer(config.GetConnectionString("DevelopmentConnectionString"));
+            //base.OnConfiguring(optionsBuilder);
+            optionsBuilder.UseSqlServer(config.GetConnectionString("DevelopementDbConnectionString"));
         }
     }
 }

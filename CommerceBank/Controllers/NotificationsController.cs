@@ -8,3 +8,8 @@ using CommerceBank.Models;
 
 
 
+public class NotificationsController
+{
+
+
+}
