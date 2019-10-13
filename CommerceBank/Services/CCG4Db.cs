@@ -9,14 +9,13 @@ namespace CommerceBank.Services
         public readonly IConfiguration config;
 
         //config will be provided via dependency injection
-        public CCG4Db(IConfiguration config)
+        public CCG4Db (IConfiguration config)
         {
             this.config = config;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //base.OnConfiguring(optionsBuilder);
+        { 
             optionsBuilder.UseSqlServer(config.GetConnectionString("DevelopementDbConnectionString"));
         }
     }
