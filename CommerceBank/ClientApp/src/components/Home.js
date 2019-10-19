@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { CollapsibleComponent } from './shared/CollapsibleComponent';
+import './styles/Home.css'
+
+
 export class Home extends Component {
     static displayName = Home.name;
     constructor(props) {
@@ -46,20 +49,20 @@ export class Home extends Component {
         let contents = this.state.loading ? <p><em>Loading...</em></p> : Home.renderTransactionTable(this.state.TransactionData);
         let contents1 = this.state.loading ? <p><em>Loading...</em></p> : Home.renderTransactionTable(this.state.SavingsData);
         return (
-            <div>
-                <h1 id="tabelLabel" >Hi, Class!</h1>
-                <p>This is the sample Home page for a customer, below is a sample table of transaction data</p>
-                <div class="homeContainterDiv">
-                    <CollapsibleComponent header="Checking" content={contents} componentID="1" />
-                </div>
-                <div class="homeContainterDiv">
-                    <CollapsibleComponent header="Savings" content={contents1} componentID="4" />
-                </div>
-                <div class="homeContainterDiv">
-                    <CollapsibleComponent header="Reports" content={contents1} componentID="2"/>
-                </div>
-                <div class="homeContainterDiv">
-                    <CollapsibleComponent header="Custom Alerts" content={contents} componentID="3"/>
+            <div id="HomePageMainDiv" className="HomePageMainDivClassName">
+                <div id="HomePageContentDiv">
+                    <div className="homeContainterDiv">
+                        <CollapsibleComponent header="Checking" content={contents} componentID="1" />
+                    </div>
+                    <div className="homeContainterDiv">
+                        <CollapsibleComponent header="Savings" content={contents1} componentID="4" />
+                    </div>
+                    <div className="homeContainterDiv">
+                        <CollapsibleComponent header="Reports" content={contents1} componentID="2"/>
+                    </div>
+                    <div className="homeContainterDiv">
+                        <CollapsibleComponent header="Custom Alerts" content={contents} componentID="3"/>
+                    </div>
                 </div>
             </div>
         );
