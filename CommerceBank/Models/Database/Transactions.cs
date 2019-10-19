@@ -1,16 +1,11 @@
-﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace CommerceBank.Models
+namespace CommerceBank.Models.Database
 {
-    public partial class TransactionModel
+    public partial class Transactions
     {
         [Column("AccountID")]
         public int? AccountId { get; set; }
@@ -31,7 +26,5 @@ namespace CommerceBank.Models
         [Key]
         [Column("TransactionID")]
         public int TransactionId { get; set; }
-
-
     }
 }
