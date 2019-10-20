@@ -2,7 +2,7 @@
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './../styles/SideBarButtons.css';
-import './../styles/NavMenu.css';
+//import './../styles/NavMenu.css';
 import './../bootstrap/css/bootstrap.css'
 
 export class SideBarButtons extends Component {
@@ -65,7 +65,7 @@ export class SideBarButtons extends Component {
                         <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
                             <ul className="navbar-nav flex-grow">
                                 <NavItem>
-                                    <NavLink tag={Link} className="text-light" to="/UserSettings">Settings</NavLink>
+                                    <NavLink tag={Link} className="text-light" to="/CustomAlerts">Custom Alerts</NavLink>
                                 </NavItem>
                             </ul>
                         </Collapse>

@@ -3,11 +3,12 @@ import { CollapsibleComponent } from './shared/CollapsibleComponent';
 import './styles/Home.css'
 
 
+
 export class Home extends Component {
     static displayName = Home.name;
     constructor(props) {
         super(props)
-        this.state = {TransactionData: [], SavingsData: [], loading: true };
+        this.state = {TransactionData: [], SavingsData: [], CheckingBalance: "$459.26", SavingsBalance: "$2,000.00", loading: true };
     }
 
     componentDidMount() {
@@ -20,7 +21,6 @@ export class Home extends Component {
                 <thead>
                     <tr>
                         <th> Date</th>
-                        <th> Transaction ID</th>
                         <th> Description</th>
                         <th> Amount</th>
                         <th> Account Number</th>
@@ -31,7 +31,7 @@ export class Home extends Component {
                     {TransactionData.map(Transaction =>
                         <tr key={Transaction.id}>           
                             <td>{Transaction.date}</td>
-                            <td>{Transaction.id}</td>
+                           
                             <td>{Transaction.details}</td>
                             <td>{Transaction.amount}</td>
                             <td>{Transaction.account}</td>
@@ -48,25 +48,24 @@ export class Home extends Component {
         // else it equals the transaction table function data found above)
         let contents = this.state.loading ? <p><em>Loading...</em></p> : Home.renderTransactionTable(this.state.TransactionData);
         let contents1 = this.state.loading ? <p><em>Loading...</em></p> : Home.renderTransactionTable(this.state.SavingsData);
+        let checkingHeader = `Checking - ${this.state.CheckingBalance}`;
+        let savingsHeader = `Savings - ${this.state.SavingsBalance}`;
         return (
             <div id="HomePageMainDiv" className="HomePageMainDivClassName">
                 <div id="HomePageContentDiv">
                     <div className="homeContainterDiv">
-                        <CollapsibleComponent header="Checking" content={contents} componentID="1" />
+                        <CollapsibleComponent header={checkingHeader} content={contents} componentID="1" />
                     </div>
                     <div className="homeContainterDiv">
-                        <CollapsibleComponent header="Savings" content={contents1} componentID="4" />
+                        <CollapsibleComponent header={savingsHeader} content={contents1} componentID="4" />
                     </div>
-                    <div className="homeContainterDiv">
-                        <CollapsibleComponent header="Reports" content={contents1} componentID="2"/>
-                    </div>
-                    <div className="homeContainterDiv">
-                        <CollapsibleComponent header="Custom Alerts" content={contents} componentID="3"/>
-                    </div>
+                    
                 </div>
             </div>
         );
     }
+
+    // Need to also fetch and assign account numbers and balances so they are not in the transactions table
     async GetInitialLoadTransactionData() {
         const response = await fetch('Home/GetInitialLoadTransactionData');
         const data = await response.json();
