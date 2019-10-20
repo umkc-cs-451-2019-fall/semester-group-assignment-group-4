@@ -37,10 +37,10 @@ namespace CommerceBank.Controllers
             using (var connection = new SqlConnection("Server=.; Database=CCG4; Trusted_Connection=True;"))
             {
                 connection.Open();
-                using (var command = new SqlCommand("[dbo].[spGet_TransactionData]", connection))
+                using (var command = new SqlCommand("[dbo].[spGET_ALL_TransactionTable_Data_BasedOnAccountID]", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.Add("@ID", System.Data.SqlDbType.Int).Value = 1;
+                    command.Parameters.Add("@AccountID", System.Data.SqlDbType.Int).Value = 11011;
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -48,19 +48,19 @@ namespace CommerceBank.Controllers
                             //Throwing DBNull exceptions
                             //either fill all nulls in table or create a way to check and override the exception
                             // that wont mess up the resulting rendering of the query diplay in the API
-                            var item = reader["AMOUNT"];
                             initialData.TransactionId = Convert.ToInt32(reader["TransactionId"]);
 
-                            initialData.TransactionAmount = Convert.ToInt32(reader["TransactionAmount"]);
+                            initialData.TransactionAmount = Convert.ToDecimal(reader["TransactionAmount"]);
 
                             initialData.TransactionDate = Convert.ToDateTime(reader["TransactionDate"]);
 
-                            initialData.TransactionDescription = reader["TransactionDescription"].ToString();       
+                            initialData.TransactionDescription = reader["TransactionDescription"].ToString();
 
+                            initialData.TransactionType = reader["TransactionType"].ToString();
+
+                            initialData.AccountBalance = Convert.ToDecimal(reader["AccountBalance"]);
                             transactionDataInitial.Add(initialData);
-                        }
-
-                        
+                        }    
                     }
                 }
             }

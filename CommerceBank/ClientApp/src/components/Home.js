@@ -27,13 +27,13 @@ export class Home extends Component {
                 </thead>
                 <tbody>
                     {TransactionData.map(Transaction =>
-                        <tr key={Transaction.TansactionId}>  
-                            <td>{Transaction.TransactionId}</td>
-                            <td>{Transaction.TransactionType}</td>
-                            <td>{Transaction.TransactionDate}</td>
-                            <td>{Transaction.TransactionAmount}</td>
-                            <td>{Transaction.TransactionDescription}</td>
-                            <td>{Transaction.AccountBalance}</td>
+                        <tr key={Transaction.tansactionId}>  
+                            <td>{Transaction.transactionId}</td>
+                            <td>{Transaction.transactionType}</td>
+                            <td>{Transaction.transactionDate}</td>
+                            <td>{Transaction.transactionAmount}</td>
+                            <td>{Transaction.transactionDescription}</td>
+                            <td>{Transaction.accountBalance}</td>
                         </tr>
                     )}
                 </tbody>
@@ -55,10 +55,10 @@ export class Home extends Component {
                     <CollapsibleComponent header="Checking" content={contents} componentID="1" />
                 </div>
                 <div class="homeContainterDiv">
-                    <CollapsibleComponent header="Savings" content={contents1} componentID="4" />
+                    <CollapsibleComponent header="Savings" content={contents} componentID="4" />
                 </div>
                 <div class="homeContainterDiv">
-                    <CollapsibleComponent header="Reports" content={contents1} componentID="2"/>
+                    <CollapsibleComponent header="Reports" content={contents} componentID="2"/>
                 </div>
                 <div class="homeContainterDiv">
                     <CollapsibleComponent header="Custom Alerts" content={contents} componentID="3"/>
