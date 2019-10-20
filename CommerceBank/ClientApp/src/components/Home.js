@@ -27,12 +27,12 @@ export class Home extends Component {
                 </thead>
                 <tbody>
                     {TransactionData.map(Transaction =>
-                        <tr key={Transaction.TansactionId}>           
+                        <tr key={Transaction.TansactionId}>  
+                            <td>{Transaction.TransactionId}</td>
                             <td>{Transaction.TransactionType}</td>
                             <td>{Transaction.TransactionDate}</td>
                             <td>{Transaction.TransactionAmount}</td>
                             <td>{Transaction.TransactionDescription}</td>
-                            //Need to call a funcitn to return balance info here
                             <td>{Transaction.AccountBalance}</td>
                         </tr>
                     )}
