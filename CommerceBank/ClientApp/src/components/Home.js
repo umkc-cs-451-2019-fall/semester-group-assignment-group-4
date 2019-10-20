@@ -33,7 +33,7 @@ export class Home extends Component {
                             <td>{Transaction.TransactionAmount}</td>
                             <td>{Transaction.TransactionDescription}</td>
                             //Need to call a funcitn to return balance info here
-                            //<td>{Transaction.Balance}</td>
+                            <td>{Transaction.AccountBalance}</td>
                         </tr>
                     )}
                 </tbody>

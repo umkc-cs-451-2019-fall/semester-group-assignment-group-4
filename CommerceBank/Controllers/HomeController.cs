@@ -44,11 +44,16 @@ namespace CommerceBank.Controllers
                     {
                         while (reader.Read())
                         {
-                            
-                            initialData.TransactionId = Convert.ToInt32(reader["Transaction Number"]);
-                            initialData.TransactionAmount = Convert.ToInt32(reader["Transaction Amount"]);
-                            initialData.TransactionDate = Convert.ToDateTime(reader["Transaction Date"]);
-                            initialData.TransactionDescription = reader["Transaction Details"].ToString();       
+                            //Throwing DBNull exceptions
+                            //either fill all nulls in table or create a way to check and override the exception
+                            // that wont mess up the resulting rendering of the query diplay in the API
+                            initialData.TransactionId = Convert.ToInt32(reader["TransactionId"]);
+
+                            initialData.TransactionAmount = Convert.ToInt32(reader["TransactionAmount"]);
+
+                            initialData.TransactionDate = Convert.ToDateTime(reader["TransactionDate"]);
+
+                            initialData.TransactionDescription = reader["TransactionDescription"].ToString();       
 
                             transactionDataInitial.Add(initialData);
                         }
