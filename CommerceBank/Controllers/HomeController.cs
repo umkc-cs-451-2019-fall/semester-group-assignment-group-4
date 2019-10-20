@@ -34,12 +34,13 @@ namespace CommerceBank.Controllers
 
             var initialData = new TransactionModel();
 
-            using (var connection = new SqlConnection("Server=.\\CCG4; Database=CCG4; Trusted_Connection=True;"))
+            using (var connection = new SqlConnection("Server=.; Database=CCG4; Trusted_Connection=True;"))
             {
                 connection.Open();
-                string sql = "SELECT * FROM Transactions";
-                using (var command = new SqlCommand(sql, connection))
+                using (var command = new SqlCommand("[dbo].[spGet_TransactionData]", connection))
                 {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.Add("@ID", System.Data.SqlDbType.Int).Value = 1;
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -47,6 +48,7 @@ namespace CommerceBank.Controllers
                             //Throwing DBNull exceptions
                             //either fill all nulls in table or create a way to check and override the exception
                             // that wont mess up the resulting rendering of the query diplay in the API
+                            var item = reader["AMOUNT"];
                             initialData.TransactionId = Convert.ToInt32(reader["TransactionId"]);
 
                             initialData.TransactionAmount = Convert.ToInt32(reader["TransactionAmount"]);
