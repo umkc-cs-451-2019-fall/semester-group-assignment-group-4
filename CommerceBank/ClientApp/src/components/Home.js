@@ -4,7 +4,7 @@ export class Home extends Component {
     static displayName = Home.name;
     constructor(props) {
         super(props)
-        this.state = {TransactionData: [], SavingsData: [], loading: true };
+        this.state = {TransactionData: [], loading: true };
     }
 
     componentDidMount() {
@@ -46,7 +46,7 @@ export class Home extends Component {
         // contents = (if this.state.loading = false then it equals <p> ..</p>
         // else it equals the transaction table function data found above)
         let contents = this.state.loading ? <p><em>Loading...</em></p> : Home.renderTransactionTable(this.state.TransactionData);
-        let contents1 = this.state.loading ? <p><em>Loading...</em></p> : Home.renderTransactionTable(this.state.SavingsData);
+        
         return (
             <div>
                 <h1 id="tabelLabel" >Hi, Class!</h1>
@@ -55,13 +55,13 @@ export class Home extends Component {
                     <CollapsibleComponent header="Checking" content={contents} componentID="1" />
                 </div>
                 <div class="homeContainterDiv">
-                    <CollapsibleComponent header="Savings" content={contents1} componentID="4" />
+                    <CollapsibleComponent header="Savings" content={contents} componentID="4" />
                 </div>
                 <div class="homeContainterDiv">
-                    <CollapsibleComponent header="Reports" content={contents1} componentID="2"/>
+                    <CollapsibleComponent header="Reports" content={contents} componentID="2" />
                 </div>
                 <div class="homeContainterDiv">
-                    <CollapsibleComponent header="Custom Alerts" content={contents} componentID="3"/>
+                    <CollapsibleComponent header="Custom Alerts" content={contents} componentID="3" />
                 </div>
             </div>
         );
