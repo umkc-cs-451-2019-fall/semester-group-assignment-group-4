@@ -34,7 +34,7 @@ namespace CommerceBank.Controllers
 
             var initialData = new TransactionModel();
 
-            using (var connection = new SqlConnection("Server=.; Database=CCG4; Trusted_Connection=True;"))
+            using (var connection = new SqlConnection("Server=.\\CCG4; Database=CCG4; Trusted_Connection=True;"))
             {
                 connection.Open();
                 using (var command = new SqlCommand("[dbo].[spGET_ALL_TransactionTable_Data_BasedOnAccountID]", connection))
