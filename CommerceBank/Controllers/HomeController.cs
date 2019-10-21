@@ -39,9 +39,8 @@ namespace CommerceBank.Controllers
                 connection.Open();
                 using (var command = new SqlCommand("[dbo].[spGET_ALL_TransactionTable_Data_BasedOnAccountID]", connection))
                 {
-
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.Add("@AccountID", System.Data.SqlDbType.Int).Value = 211111110;
+                    command.Parameters.Add("@AccountID", System.Data.SqlDbType.Int).Value = 11011;
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -60,11 +59,8 @@ namespace CommerceBank.Controllers
                             initialData.TransactionType = reader["TransactionType"].ToString();
 
                             initialData.AccountBalance = Convert.ToDecimal(reader["AccountBalance"]);
-
                             transactionDataInitial.Add(initialData);
-                        }
-
-                        
+                        }    
                     }
                 }
             }
