@@ -65,6 +65,23 @@ namespace CommerceBank.Models.Database
                 entity.Property(e => e.UserName).IsFixedLength();
             });
 
+            modelBuilder.Entity<Transactions>(entity =>
+            {
+                entity.Property(e => e.AccountBalance).HasDefaultValueSql("((0.00))");
+
+                entity.Property(e => e.TransactionAmount).HasDefaultValueSql("((0.00))");
+
+                entity.Property(e => e.TransactionDate).HasDefaultValueSql("(getutcdate())");
+
+                entity.Property(e => e.TransactionDescription).HasDefaultValueSql("(N'None')");
+
+                entity.Property(e => e.TransactionLocation).HasDefaultValueSql("(N'Unknown')");
+
+                entity.Property(e => e.TransactionTime).HasDefaultValueSql("(getutcdate())");
+
+                entity.Property(e => e.TransactionType).HasDefaultValueSql("(N'WD')");
+            });
+
             modelBuilder.Entity<User>(entity =>
             {
                 entity.HasNoKey();

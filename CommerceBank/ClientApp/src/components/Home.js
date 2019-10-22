@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { CollapsibleComponent } from './shared/CollapsibleComponent';
+import './styles/Home.css'
+
+
 export class Home extends Component {
     static displayName = Home.name;
     constructor(props) {
         super(props)
-        this.state = {TransactionData: [], loading: true };
+        this.state = {TransactionData: [], SavingsData: [], loading: true };
     }
 
     componentDidMount() {
@@ -27,13 +30,13 @@ export class Home extends Component {
                 </thead>
                 <tbody>
                     {TransactionData.map(Transaction =>
-                        <tr key={Transaction.TansactionId}>  
-                            <td>{Transaction.TransactionId}</td>
-                            <td>{Transaction.TransactionType}</td>
-                            <td>{Transaction.TransactionDate}</td>
-                            <td>{Transaction.TransactionAmount}</td>
-                            <td>{Transaction.TransactionDescription}</td>
-                            <td>{Transaction.AccountBalance}</td>
+                        <tr key={Transaction.tansactionId}>  
+                            <td>{Transaction.transactionId}</td>
+                            <td>{Transaction.transactionType}</td>
+                            <td>{Transaction.transactionDate}</td>
+                            <td>{Transaction.transactionAmount}</td>
+                            <td>{Transaction.transactionDescription}</td>
+                            <td>{Transaction.accountBalance}</td>
                         </tr>
                     )}
                 </tbody>
@@ -46,22 +49,22 @@ export class Home extends Component {
         // contents = (if this.state.loading = false then it equals <p> ..</p>
         // else it equals the transaction table function data found above)
         let contents = this.state.loading ? <p><em>Loading...</em></p> : Home.renderTransactionTable(this.state.TransactionData);
-        
+        let contents1 = this.state.loading ? <p><em>Loading...</em></p> : Home.renderTransactionTable(this.state.SavingsData);
         return (
-            <div>
-                <h1 id="tabelLabel" >Hi, Class!</h1>
-                <p>This is the sample Home page for a customer, below is a sample table of transaction data</p>
-                <div class="homeContainterDiv">
-                    <CollapsibleComponent header="Checking" content={contents} componentID="1" />
-                </div>
-                <div class="homeContainterDiv">
-                    <CollapsibleComponent header="Savings" content={contents} componentID="4" />
-                </div>
-                <div class="homeContainterDiv">
-                    <CollapsibleComponent header="Reports" content={contents} componentID="2" />
-                </div>
-                <div class="homeContainterDiv">
-                    <CollapsibleComponent header="Custom Alerts" content={contents} componentID="3" />
+            <div id="HomePageMainDiv" className="HomePageMainDivClassName">
+                <div id="HomePageContentDiv">
+                    <div className="homeContainterDiv">
+                        <CollapsibleComponent header="Checking" content={contents} componentID="1" />
+                    </div>
+                    <div className="homeContainterDiv">
+                        <CollapsibleComponent header="Savings" content={contents} componentID="4" />
+                    </div>
+                    <div className="homeContainterDiv">
+                        <CollapsibleComponent header="Reports" content={contents} componentID="2"/>
+                    </div>
+                    <div className="homeContainterDiv">
+                        <CollapsibleComponent header="Custom Alerts" content={contents} componentID="3"/>
+                    </div>
                 </div>
             </div>
         );
