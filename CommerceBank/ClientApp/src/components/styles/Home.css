@@ -1,12 +1,4 @@
 ﻿.homeContainterDiv{
     width: 95%;
-    margin-top: 10px;
-    left: 17%;
-}
-.HomePageMainDivClassName {
-    padding-left: 17%;
-    width: 100%;
-    z-index: -1;
-    overflow-y: auto;
-    height: 650px;
+    margin-top: 20px;
 }
