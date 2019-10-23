@@ -13,28 +13,31 @@ export class Home extends Component {
 
     componentDidMount() {
         this.GetInitialLoadTransactionData();
-        this.GetSavingsLoadTransactionData();
+        
     }
     static renderTransactionTable(TransactionData) {
         return (
             <table className='table table-striped' aria-labelledby="tableLable">
                 <thead>
                     <tr>
-                        <th> Date</th>
+                        <th> Transaction Number</th>
+                        <th> Type </th>
+                        <th> Date </th>
+                        <th> Ammount </th>
                         <th> Description</th>
-                        <th> Amount</th>
-                        <th> Account Number</th>
+                        <th> Balance</th>
                
                     </tr>
                 </thead>
                 <tbody>
                     {TransactionData.map(Transaction =>
-                        <tr key={Transaction.id}>           
-                            <td>{Transaction.date}</td>
-                           
-                            <td>{Transaction.details}</td>
-                            <td>{Transaction.amount}</td>
-                            <td>{Transaction.account}</td>
+                        <tr key={Transaction.tansactionId}>  
+                            <td>{Transaction.transactionId}</td>
+                            <td>{Transaction.transactionType}</td>
+                            <td>{Transaction.transactionDate}</td>
+                            <td>{Transaction.transactionAmount}</td>
+                            <td>{Transaction.transactionDescription}</td>
+                            <td>{Transaction.accountBalance}</td>
                         </tr>
                     )}
                 </tbody>
@@ -71,10 +74,5 @@ export class Home extends Component {
         const data = await response.json();
         this.setState({ TransactionData: data, loading: false });
     }
-    
-    async GetSavingsLoadTransactionData() {
-        const response = await fetch('Home/GetSavingsLoadTransactionData');
-        const data = await response.json();
-        this.setState({ SavingsData: data, loading: false });
-    }
+   
 }
