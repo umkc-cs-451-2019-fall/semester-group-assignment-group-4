@@ -3,17 +3,18 @@
   white-space: normal;
   text-align: center;
   word-break: break-all;
-  
 }
 
+
 html {
-  font-size: 14px;
+  font-size: 12px;
   color: white;
 }
 @media (min-width: 768px) {
     html {
         color: white;
-        font-size: 16px;
+        font-size: 20px;
+       
     }
 }
 

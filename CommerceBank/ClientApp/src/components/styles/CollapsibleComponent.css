@@ -8,10 +8,13 @@
         text-align: left;
         outline: none;
         font-size: 15px;
+        position: relative;
     }
-    .CollapsibleComponent{
+    .CollapsibleComponent {
         padding-bottom: 10px;
         padding-top: 5px;
+        width: 95%;
+        position:relative;
     }
 
     .active, .collapsible:hover {
@@ -30,8 +33,11 @@
         border-width: 0 3px 3px 0;
         display: inline-block;
         padding: 3px;
-        position: relative;
-        left: 88%;
+        position: absolute;
+        top: 40%;
+        left: 95%;
+        vertical-align: middle;
+        z-index: 1;
     }
 
     .right {
