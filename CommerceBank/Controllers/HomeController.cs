@@ -32,9 +32,9 @@ namespace CommerceBank.Controllers
 
             //TransactionModel transactionDataInitial = new TransactionModel();
 
-            var initialData = new TransactionModel();
+           
 
-            using (var connection = new SqlConnection("Server=.; Database=CCG4; Trusted_Connection=True;"))
+            using (var connection = new SqlConnection("Server=.\\CCG4; Database=CCG4; Trusted_Connection=True;"))
             {
                 connection.Open();
                 using (var command = new SqlCommand("[dbo].[spGET_ALL_TransactionTable_Data_BasedOnAccountID]", connection))
@@ -45,6 +45,7 @@ namespace CommerceBank.Controllers
                     {
                         while (reader.Read())
                         {
+                            var initialData = new TransactionModel();
                             //Throwing DBNull exceptions
                             //either fill all nulls in table or create a way to check and override the exception
                             // that wont mess up the resulting rendering of the query diplay in the API
