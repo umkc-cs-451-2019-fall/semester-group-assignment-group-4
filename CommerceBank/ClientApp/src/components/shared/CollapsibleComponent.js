@@ -1,9 +1,7 @@
 ﻿import React, { Component } from 'react';
 import './../styles/CollapsibleComponent.css';
 export class CollapsibleComponent extends Component {
-    constructor(props) {
-        super(props)
-    }
+    
 
     componentDidMount() { }
 
@@ -27,9 +25,10 @@ export class CollapsibleComponent extends Component {
     }
     render() {
         return (
-            <div class="CollapsibleComponent">
-                <button type="button" class="collapsible" onClick={this.expandOrCollapse.bind(this)}>{this.props.header}<i class="right" id={"expandOrCollapseIcon" + this.props.componentID}></i></button>
-                <div class="content" id={"hiddenDiv" + this.props.componentID}>
+            <div className="CollapsibleComponent">
+                <button type="button" className="collapsible" onClick={this.expandOrCollapse.bind(this)}>{this.props.header}<i className="right" id={"expandOrCollapseIcon" + this.props.componentID}></i></button>
+                   
+                <div className="content" id={"hiddenDiv" + this.props.componentID}>
                     {this.props.content}
                 </div>
             </div>

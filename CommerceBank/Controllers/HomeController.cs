@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CommerceBank.Models;
+using Microsoft.Data.SqlClient;
+using Apache.NMS.ActiveMQ.Commands;
 
 namespace CommerceBank.Controllers
 {
@@ -26,128 +28,46 @@ namespace CommerceBank.Controllers
         [HttpGet]
         public IEnumerable<TransactionModel> GetInitialLoadTransactionData()
         {
-            TransactionModel T1 = new TransactionModel
-            {
+            var transactionDataInitial = new List<TransactionModel>();
 
-                id = 1,
-                account = "411111111",
-                amount = "-200.00",
-                date = "11/02/16",
-                details = "Verizon",
-                action = 1
-            };
-            TransactionModel T2 = new TransactionModel
-            {
-                id = 2,
-                account = "411111111",
-                amount = "-18.24",
-                date = "11/02/16",
-                details = "Panda Express",
-                action = 1
-            };
-            TransactionModel T3 = new TransactionModel
-            {
-                id = 3,
-                account = "411111111",
-                amount = "-64.03",
-                date = "11/02/16",
-                details = "CVS",
-                action = 1
-            };
-            TransactionModel T4 = new TransactionModel
-            {
-                id = 4,
-                account = "411111111",
-                amount = "-122.08",
-                date = "11/02/16",
-                details = "Maurices",
-                action = 1
-            };
-            TransactionModel T5 = new TransactionModel
-            {
-                id = 5,
-                account = "411111111",
-                amount = "-26.11",
-                date = "11/02/16",
-                details = "QuikTrip",
-                action = 1
-            };
+            //TransactionModel transactionDataInitial = new TransactionModel();
+
            
 
-            // Rename these later - KH
-            List<TransactionModel> MockTransactionData = new List<TransactionModel>();
-           
-            MockTransactionData.Add(T1);
-            MockTransactionData.Add(T2);
-            MockTransactionData.Add(T3);
-            MockTransactionData.Add(T4);
-            MockTransactionData.Add(T5);
+            using (var connection = new SqlConnection("Server=.\\CCG4; Database=CCG4; Trusted_Connection=True;"))
+            {
+                connection.Open();
+                using (var command = new SqlCommand("[dbo].[spGET_ALL_TransactionTable_Data_BasedOnAccountID]", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.Add("@AccountID", System.Data.SqlDbType.Int).Value = 11011;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var initialData = new TransactionModel();
+                            //Throwing DBNull exceptions
+                            //either fill all nulls in table or create a way to check and override the exception
+                            // that wont mess up the resulting rendering of the query diplay in the API
+                            initialData.TransactionId = Convert.ToInt32(reader["TransactionId"]);
+
+                            initialData.TransactionAmount = Convert.ToDecimal(reader["TransactionAmount"]);
+
+                            initialData.TransactionDate = Convert.ToDateTime(reader["TransactionDate"]);
+
+                            initialData.TransactionDescription = reader["TransactionDescription"].ToString();
+
+                            initialData.TransactionType = reader["TransactionType"].ToString();
+
+                            initialData.AccountBalance = Convert.ToDecimal(reader["AccountBalance"]);
+                            transactionDataInitial.Add(initialData);
+                        }    
+                    }
+                }
+            }
+
+            return transactionDataInitial.ToArray();
+        }
         
-            return MockTransactionData.ToArray();
-        }
-
-
-
-        public IEnumerable<TransactionModel> GetSavingsLoadTransactionData()
-        {
-            
-            TransactionModel T6 = new TransactionModel
-            {
-                id = 6,
-                account = "8222222228",
-                amount = "25.00",
-                date = "11/01/16",
-                details = "Cash Deposit",
-                action = 0
-            };
-            TransactionModel T7 = new TransactionModel
-            {
-                id = 7,
-                account = "8222222228",
-                amount = "200.00",
-                date = "11/16/16",
-                details = "Transfer from savings - Mom loves you!!",
-                action = 0
-            };
-            TransactionModel T8 = new TransactionModel
-            {
-                id = 8,
-                account = "8222222228",
-                amount = "25.00",
-                date = "11/16/16",
-                details = "Cash Deposit",
-                action = 0
-            };
-            TransactionModel T9 = new TransactionModel
-            {
-                id = 9,
-                account = "8222222228",
-                amount = "100.00",
-                date = "11/29/16",
-                details = "Transfer from savings",
-                action = 0
-            };
-            TransactionModel T10 = new TransactionModel
-            {
-                id = 10,
-                account = "8222222228",
-                amount = "300.00",
-                date = "11/30/16",
-                details = "Transfer from savings",
-                action = 0
-            };
-
-            // Rename these later - KH
-            List<TransactionModel> MockTransactionData = new List<TransactionModel>();
-            
-            
-            MockTransactionData.Add(T6);
-            MockTransactionData.Add(T7);
-            MockTransactionData.Add(T8);
-            MockTransactionData.Add(T9);
-            MockTransactionData.Add(T10);
-            return MockTransactionData.ToArray();
-        }
-
     }
 }

@@ -1,0 +1,15 @@
+﻿.SideBarDiv {
+    height: 660px;
+    width: 15%;
+    position: absolute;
+    top: 49px;
+    left: 0;
+    background-color: seagreen;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+a.text-light.nav-link{
+        font-size: 1.4vw;
+        text-align:left !important;
+    }
