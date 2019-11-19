@@ -1,16 +1,22 @@
 ﻿import React, { Component } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import { NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './../styles/SideBarButtons.css';
-//import './../styles/NavMenu.css';
-import './../bootstrap/css/bootstrap.css'
+import { Notifications } from './Notifications';
+import reportIcon from '../images/reports.png';
+import homeIcon from '../images/home.png';
+import customIcon from '../images/custom.png';
 
 export class SideBarButtons extends Component {
     constructor(props) {
         super(props);
         this.toggleNavbar = this.toggleNavbar.bind(this);
+        this.toggleHover = this.toggleHover.bind(this);
         this.state = {
-            collapsed: true
+            collapsed: true,
+            homeHover: false,
+            reportsHover: false,
+            customHover: false
         };
     }
 
@@ -20,57 +26,46 @@ export class SideBarButtons extends Component {
         });
     }
 
+    toggleHover(tab) {
+        switch (tab) {
+            case "home":
+                this.setState({ homeHover: !this.state.homeHover });
+                break;
+            case "reports":
+                this.setState({ reportsHover: !this.state.reportsHover });
+                break;
+            case "custom":
+                this.setState({ customHover: !this.state.customHover });
+                break;
+        }
+    }
+
     render() {
+        let home = "home";
+        let reports = "reports";
+        let custom = "custom";
+
         return (
-            <div className="SideBarDiv">
-                <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" dark>
-                    <Container>
-                        <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-                        <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-                            <ul className="navbar-nav flex-grow">
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-light" to="/">Home</NavLink>
-                                </NavItem>
-                            </ul>
-                        </Collapse>
-                    </Container>
-                </Navbar>
-                <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" dark>
-                    <Container>
-                        <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-                        <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-                            <ul className="navbar-nav flex-grow">
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-light" to="/Notifications">Notifications</NavLink>
-                                </NavItem>
-                            </ul>
-                        </Collapse>
-                    </Container>
-                </Navbar>
-                <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" dark>
-                    <Container>
-                        <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-                        <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-                            <ul className="navbar-nav flex-grow">
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-light" to="/Reports">Reports</NavLink>
-                                </NavItem>
-                            </ul>
-                        </Collapse>
-                    </Container>
-                </Navbar>
-                <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" dark>
-                    <Container>
-                        <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-                        <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-                            <ul className="navbar-nav flex-grow">
-                                <NavItem>
-                                    <NavLink tag={Link} className="text-light" to="/CustomAlerts">Custom Alerts</NavLink>
-                                </NavItem>
-                            </ul>
-                        </Collapse>
-                    </Container>
-                </Navbar>
+            <div className="sideBarDiv">
+                <NavLink tag={Link} className={this.state.homeHover ? "navbar navText" : "navbar"} to="/">
+                    <div className={this.state.homeHover ? "item itemExpand" : "item"}>
+                        <img onMouseOut={this.toggleHover.bind(this, home)} onMouseEnter={this.toggleHover.bind(this, home)} src={homeIcon} className="navIcon"></img>
+                        <text className="text">Home</text>
+                    </div>
+                </NavLink>
+                <NavLink className="navbar" tag={Link} to="/Reports">
+                    <div className={this.state.reportsHover ? "item itemExpand" : "item"}>
+                        <img onMouseOut={this.toggleHover.bind(this, reports)} onMouseEnter={this.toggleHover.bind(this, reports)} src={reportIcon} className="navIcon"></img>
+                        <text className="text">Reports</text>
+                    </div>
+                </NavLink>
+                <NavLink className="navbar" tag={Link} to="/CustomAlerts">
+                    <div className={this.state.customHover ? "item itemExpand" : "item"}>
+                        <img onMouseOut={this.toggleHover.bind(this, custom)} onMouseEnter={this.toggleHover.bind(this, custom)} src={customIcon} className="navIcon"></img>
+                        <text className="text">Custom Alerts</text>
+                    </div>
+                </NavLink>
+                <Notifications />
             </div>
             );
     }

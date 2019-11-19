@@ -1,10 +1,11 @@
-﻿.homeContainterDiv{
+﻿.reportsContainerDiv {
     width: 95%;
     margin-top: 10px;
     left: 17%;
+    background-color: pink; 
 }
 
-.HomePageMainDivClassName {
+.ReportsPageMainDivClassName {
     padding-left: 17%;
     width: 100%;
     z-index: -1;

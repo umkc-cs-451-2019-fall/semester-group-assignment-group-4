@@ -1,15 +1,67 @@
-﻿.SideBarDiv {
-    height: 660px;
-    width: 15%;
-    position: absolute;
-    top: 49px;
-    left: 0;
-    background-color: seagreen;
-    overflow-x: hidden;
-    padding-top: 20px;
+﻿.navbar {
+    padding: 0;
+    margin: 0;
+    font-family: 'Oswald',sans-serif;
+    font-weight: bold;
 }
 
-a.text-light.nav-link{
-        font-size: 1.4vw;
-        text-align:left !important;
+.text {
+    height: 100%;
+    width: 100%;
+    padding-top: 1em;
+    float: right;
+    white-space: nowrap;
+}
+
+.nav-link {
+    padding-left: 0;
+}
+
+.sideBarDiv {
+    height: 100%;
+    width: 15%;
+    position: absolute;
+    top: 5em;
+    left: 0;
+}
+
+.item {
+    height: 3em;
+    margin-bottom: 1em;
+    text-align: right;
+    background-color: #dcece3;
+    font-weight: bold;
+
+    animation: shrink 1s forwards;
+}
+
+.itemExpand {
+    animation: expand 1s forwards;
+}
+
+.navIcon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    height: 3em;
+    width: 3em;
+    padding: .5em;
+    background-color: seagreen;
+}
+
+@keyframes expand {
+    from {
+        width: 3em;
+    } to {
+        width: 100%;
     }
+}
+
+@keyframes shrink {
+    from {
+        width: 100%;
+    } to  {
+        width: 3em;
+    }
+}

@@ -1,0 +1,104 @@
+﻿@font-face {
+    font-family: 'Oswald', sans-serif;
+    src: url('https://fonts.googleapis.com/css?family=Oswald:700&display=swap');
+}
+
+.tabConExpand {
+    background-color: #dcece3;
+    left: 0;
+    height: 3em;
+    animation: expand 1s forwards;
+}
+
+.tabConShrink {
+    animation: shrink 1s forwards;
+}
+
+@keyframes shrink {
+    from {
+        width: 150%;
+    } to {
+          width: 3em;
+    }
+}
+
+@keyframes expand {
+    from {
+        width: 3em;
+    } to {
+        width: 150%;
+    }
+}
+.tabText {
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+    float: left;
+    top: 0;
+}
+
+.tabTextHidden {
+}
+
+.tabTextShown {
+}
+
+.IconCollapse {
+    z-index: 1;
+    left: 9em;
+    width: 3em;
+    height: 3em;
+    padding: .5em;
+    background-color: seagreen;
+}
+
+
+.IconExpand {
+    z-index:1;
+    left: 9em;
+    width: 3em;
+    height: 3em;
+    padding: .5em;
+    background-color: seagreen;
+}
+
+#contentHide {
+    display:none;
+}
+
+#contentShow {
+    width: 0;
+    left: 0;
+    z-index: 1;
+    width: 9em;
+    height: 350px;
+    padding: .5em;
+    background-color: #f1f1f1;
+    text-overflow: clip;
+
+    font-family: 'Oswald', sans-serif;
+}
+
+
+/* SHAKING ANIMATION
+.Icon:hover {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+}*/
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-.025em, 0, 0);
+    }
+
+    20%, 80% {
+        transform: translate3d(.05em, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-.1em, 0, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(.1em, 0, 0);
+    }
+}
