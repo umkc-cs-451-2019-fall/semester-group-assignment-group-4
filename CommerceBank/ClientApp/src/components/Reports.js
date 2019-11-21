@@ -20,28 +20,28 @@ export class Reports extends Component {
         return (
             <table className='table table-striped' aria-labelledby="tableLable">
                 <tr>
-                    <label>
+                    <label className="option">
                         <input name="rule1" type="checkbox"
                             //checked={this.state.rule1}
                             onChange={this.handleInputChange} />
-                        rule 1
-                </label>
+                        <text className="ruleText">rule 1</text>
+                    </label>
                 </tr>
                 <tr>
-                    <label>
+                    <label className="option">
                         <input name="rule2" type="checkbox"
                             //checked={this.state.rule2}
                             onChange={this.handleInputChange} />
-                        rule 2
-                </label>
+                            <text className="ruleText">rule 2</text>
+                    </label>
                 </tr>
                 <tr>
-                    <label>
+                    <label className="option">
                         <input name="rule3" type="checkbox"
                             //checked={this.state.rule3}
                             onChange={this.handleInputChange} />
-                        rule 3
-                </label>
+                        <text className="ruleText">rule 3</text>
+                    </label>
                 </tr>
             </table>
         )

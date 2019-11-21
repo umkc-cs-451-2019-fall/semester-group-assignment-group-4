@@ -1,14 +1,23 @@
-﻿.reportsContainerDiv {
+﻿.reportsContainterDiv {
     width: 95%;
     margin-top: 10px;
     left: 17%;
-    background-color: pink; 
 }
 
 .ReportsPageMainDivClassName {
     padding-left: 17%;
     width: 100%;
-    z-index: -1;
     overflow-y: auto;
     height: 650px;
+}
+
+.option {
+    padding-top: 20px;
+    padding-left: 5px;
+}
+
+.ruleText {
+    padding-left: 10px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
 }

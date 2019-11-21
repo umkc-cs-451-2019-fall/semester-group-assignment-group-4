@@ -3,6 +3,14 @@
     src: url('https://fonts.googleapis.com/css?family=Oswald:700&display=swap');
 }
 
+.notiContainer {
+    z-index: 99;
+}
+
+.links {
+    padding-top: 0;
+}
+
 .tabConExpand {
     background-color: #dcece3;
     left: 0;
@@ -29,56 +37,42 @@
         width: 150%;
     }
 }
-.tabText {
-    font-weight: bold;
-    font-family: 'Oswald', sans-serif;
-    float: left;
-    top: 0;
-}
 
-.tabTextHidden {
-}
-
-.tabTextShown {
-}
-
-.IconCollapse {
+.icon {
     z-index: 1;
-    left: 9em;
     width: 3em;
     height: 3em;
     padding: .5em;
     background-color: seagreen;
 }
 
-
-.IconExpand {
-    z-index:1;
-    left: 9em;
-    width: 3em;
-    height: 3em;
+.notiContent {
+    width: 100%;
     padding: .5em;
-    background-color: seagreen;
-}
-
-#contentHide {
-    display:none;
-}
-
-#contentShow {
-    width: 0;
-    left: 0;
-    z-index: 1;
-    width: 9em;
-    height: 350px;
-    padding: .5em;
-    background-color: #f1f1f1;
+    opacity: 0;
+    background-color: #d1d1d1;
     text-overflow: clip;
+    white-space: nowrap;
+    font-family: 'Oswald',sans-serif;
+    font-weight: bold;
+    color: #ffffff;
 
-    font-family: 'Oswald', sans-serif;
+    animation: expandContent 2s forwards;
 }
 
+.notiContentShrink {
+    animation: shrinkContent 2s forwards;
+}
 
+@keyframes expandContent {
+    from { height: 0; opacity: 0; }
+    to { height: 20em; opacity: 1; }
+}
+
+@keyframes shrinkContent {
+    from { height: 20em; opacity: 1; }
+    to { height: 0; opacity: 0; }
+}
 /* SHAKING ANIMATION
 .Icon:hover {
     animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;

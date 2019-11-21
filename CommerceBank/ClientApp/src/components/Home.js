@@ -62,7 +62,6 @@ export class Home extends Component {
                     <div className="homeContainterDiv">
                         <CollapsibleComponent header={savingsHeader} content={contents1} componentID="4" />
                     </div>
-                    
                 </div>
             </div>
         );

@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import '../styles/Notifications.css';
 import Logo from '../images/notification.png';
-
+import { NavLink } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 export class Notifications extends Component {
     static displayName = Notifications.name;
@@ -14,6 +15,19 @@ export class Notifications extends Component {
             active: false,
             tabHover: false
         };
+    }
+
+    static notificationLinks() {
+        return (
+        <div>
+        <NavLink tag={Link} className="links" to="/Reports">
+            <text className="text">Example Numero Uno</text>
+        </NavLink>
+        <NavLink tag={Link} className="links" to="/Reports">
+            <text className="text">Example Numero Dos</text>
+        </NavLink>
+        </div>
+            );
     }
 
     toggleClass() {
@@ -28,13 +42,12 @@ export class Notifications extends Component {
     render() {
         return (
             <div onClick={this.toggleClass}
-                className={this.state.tabHover ? "tabConExpand" : "tabConExpand tabConShrink"}>
+                className={this.state.tabHover || this.state.active ? "notiContainer tabConExpand" : "notiContainer tabConExpand tabConShrink"}>
                 <img src={Logo}
                     onMouseOut={this.toggleHover}
                     onMouseEnter={this.toggleHover}
-                    className={this.state.active ? "IconExpand" : "IconCollapse Icon"}></img>
-                {this.state.tabHover &&
-                    <div id={this.state.active ? "contentShow" : "contentHide"}>To Be Inserted</div>}
+                    className="icon"></img>
+                <div className={this.state.active ? "notiContent" : "notiContent notiContentShrink"}>{Notifications.notificationLinks()}</div>
             </div>
         );
     }
