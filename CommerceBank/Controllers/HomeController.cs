@@ -32,7 +32,7 @@ namespace CommerceBank.Controllers
 
             //TransactionModel transactionDataInitial = new TransactionModel();
 
-           
+           /*
 
             using (var connection = new SqlConnection("Server=.\\CCG4; Database=CCG4; Trusted_Connection=True;"))
             {
@@ -65,6 +65,8 @@ namespace CommerceBank.Controllers
                     }
                 }
             }
+
+    */
 
             return transactionDataInitial.ToArray();
         }

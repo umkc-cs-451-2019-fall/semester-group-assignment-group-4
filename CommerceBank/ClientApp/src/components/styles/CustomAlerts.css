@@ -1,0 +1,25 @@
+﻿.selectionDiv {
+    width: 95%;
+    margin-top: 10px;
+    left: 17%;
+    background-color: #777;
+    padding: 18px;
+    white-space: nowrap;
+}
+
+.ruleSelectionContainer {
+    padding-left: 17%;
+    width: 100%;
+    z-index: -1;
+    overflow-y: auto;
+    height: 650px;
+    text-align: center;
+    padding-top: 2%;
+    font-weight: bold;
+}
+
+.dropMenu {
+    display: inline;
+    padding-left: 10px;
+    padding-right: 10px;
+}

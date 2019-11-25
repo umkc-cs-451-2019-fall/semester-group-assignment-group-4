@@ -20,7 +20,7 @@ export class Home extends Component {
             <table className='table table-striped' aria-labelledby="tableLable">
                 <thead>
                     <tr>
-                        <th> Transaction Number</th>
+                        <th> ID</th>
                         <th> Type </th>
                         <th> Date </th>
                         <th> Ammount </th>
@@ -54,15 +54,14 @@ export class Home extends Component {
         let checkingHeader = `Checking - ${this.state.CheckingBalance}`;
         let savingsHeader = `Savings - ${this.state.SavingsBalance}`;
         return (
-            <div id="HomePageMainDiv" className="HomePageMainDivClassName">
-                <div id="HomePageContentDiv">
+            <div className="HomePageMainDivClassName">
+                <div >
                     <div className="homeContainterDiv">
                         <CollapsibleComponent header={checkingHeader} content={contents} componentID="1" />
                     </div>
                     <div className="homeContainterDiv">
                         <CollapsibleComponent header={savingsHeader} content={contents1} componentID="4" />
                     </div>
-                    
                 </div>
             </div>
         );

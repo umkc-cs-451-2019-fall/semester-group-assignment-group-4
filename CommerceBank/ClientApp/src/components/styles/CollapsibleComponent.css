@@ -10,6 +10,7 @@
         font-size: 15px;
         position: relative;
     }
+
     .CollapsibleComponent {
         padding-bottom: 10px;
         padding-top: 5px;
@@ -20,7 +21,7 @@
     .active, .collapsible:hover {
         background-color: #555;
     }
-
+    
     .content {
         padding: 0 18px;
         display: none;
