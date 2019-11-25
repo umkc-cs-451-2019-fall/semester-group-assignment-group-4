@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { NavMenu } from './NavMenu';
 import { SideBarButtons } from './shared/SideBarButtons';
 
-
 export class Layout extends Component {
   static displayName = Layout.name;
 

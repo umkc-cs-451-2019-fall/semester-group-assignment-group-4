@@ -1,0 +1,98 @@
+﻿@font-face {
+    font-family: 'Oswald', sans-serif;
+    src: url('https://fonts.googleapis.com/css?family=Oswald:700&display=swap');
+}
+
+.notiContainer {
+    z-index: 99;
+}
+
+.links {
+    padding-top: 0;
+}
+
+.tabConExpand {
+    background-color: #dcece3;
+    left: 0;
+    height: 3em;
+    animation: expand 1s forwards;
+}
+
+.tabConShrink {
+    animation: shrink 1s forwards;
+}
+
+@keyframes shrink {
+    from {
+        width: 150%;
+    } to {
+          width: 3em;
+    }
+}
+
+@keyframes expand {
+    from {
+        width: 3em;
+    } to {
+        width: 150%;
+    }
+}
+
+.icon {
+    z-index: 1;
+    width: 3em;
+    height: 3em;
+    padding: .5em;
+    background-color: seagreen;
+}
+
+.notiContent {
+    width: 100%;
+    padding: .5em;
+    opacity: 0;
+    background-color: #d1d1d1;
+    text-overflow: clip;
+    white-space: nowrap;
+    font-family: 'Oswald',sans-serif;
+    font-weight: bold;
+    color: #ffffff;
+
+    animation: expandContent 2s forwards;
+}
+
+.notiContentShrink {
+    animation: shrinkContent 2s forwards;
+}
+
+@keyframes expandContent {
+    from { height: 0; opacity: 0; }
+    to { height: 20em; opacity: 1; }
+}
+
+@keyframes shrinkContent {
+    from { height: 20em; opacity: 1; }
+    to { height: 0; opacity: 0; }
+}
+/* SHAKING ANIMATION
+.Icon:hover {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+}*/
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-.025em, 0, 0);
+    }
+
+    20%, 80% {
+        transform: translate3d(.05em, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        transform: translate3d(-.1em, 0, 0);
+    }
+
+    40%, 60% {
+        transform: translate3d(.1em, 0, 0);
+    }
+}
