@@ -8,12 +8,19 @@ export class Reports extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.renderCheckBox = this.renderCheckBox.bind(this);
         this.renderTransactionTable = this.renderTransactionTable.bind(this);
+        this.exportTransactionReportAsExcelFile = this.exportTransactionReportAsExcelFile.bind(this);
         this.state = { loading: true, TransactionData: [], clientAlerts: [], selectedAlert: null};
     }
 
     handleInputChange = (event) => {
         var selectedAlertID = event.currentTarget.defaultValue;
         this.setState({ selectedAlert: selectedAlertID });
+    }
+
+    exportTransactionReportAsExcelFile() {
+        var selectedAlertID = this.state.selectedAlert;
+        if (selectedAlertID != null)
+        { window.location = 'Reports/DownloadTransactionReport/' + selectedAlertID; }
     }
 
     componentDidMount() {
@@ -104,6 +111,7 @@ export class Reports extends Component {
                     <div className="reportsContainterDiv">
                         <CollapsibleComponent header= 'Notifications' content={transactionTable} componentID="4" />
                     </div>
+                    <button id="exportButton" onClick={this.exportTransactionReportAsExcelFile}> Export </button>
                 </div>
             </div>
         );

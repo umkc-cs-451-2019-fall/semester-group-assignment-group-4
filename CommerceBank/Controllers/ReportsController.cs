@@ -7,6 +7,8 @@ using Microsoft.Extensions.Logging;
 using CommerceBank.Models;
 using Microsoft.Data.SqlClient;
 using Apache.NMS.ActiveMQ.Commands;
+using OfficeOpenXml;
+using System.Data;
 
 namespace CommerceBank.Controllers
 {
@@ -35,9 +37,6 @@ namespace CommerceBank.Controllers
                         while (reader.Read())
                         {
                             var initialData = new ReportsAlertModel();
-                            //Throwing DBNull exceptions
-                            //either fill all nulls in table or create a way to check and override the exception
-                            // that wont mess up the resulting rendering of the query diplay in the API
                             initialData.AlertName = Convert.ToString(reader["AlertName"]);
                             initialData.AlertsID = Convert.ToInt32(reader["AlertsID"]);
 
@@ -66,9 +65,7 @@ namespace CommerceBank.Controllers
                         while (reader.Read())
                         {
                             var initialData = new TransactionModel();
-                            //Throwing DBNull exceptions
-                            //either fill all nulls in table or create a way to check and override the exception
-                            // that wont mess up the resulting rendering of the query diplay in the API
+                            
                             initialData.TransactionId = Convert.ToInt32(reader["TransactionID"]);
 
                             initialData.TransactionAmount = Convert.ToDecimal(reader["TransactionAmount"]);
@@ -85,6 +82,44 @@ namespace CommerceBank.Controllers
                 }
             }
             return transactionDataInitial.ToArray();
+        }
+
+        [HttpGet]
+        public ActionResult DownloadTransactionReport(int id)
+        {
+            var dataTable = new DataTable();
+            using (var connection = new SqlConnection("Server=.; Database=CCG4; Trusted_Connection=True;"))
+            {
+                connection.Open();
+                using (var command = new SqlCommand("[dbo].[spGet_AlertTransactions_ForExporting]", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.Add("@ID", System.Data.SqlDbType.Int).Value = id;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        dataTable.Load(reader); //Currently there is a defect with exporting the date, it does not come out right
+                    }
+                }
+            }
+            byte[] file;
+            using (ExcelPackage package = new ExcelPackage())
+            {
+                package.Workbook.Properties.Author = "CommerceBank";
+                package.Workbook.Properties.Title = "Transaction Alert";
+                package.Workbook.Properties.Created = DateTime.Now;
+
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Transaction Report");
+                worksheet.Cells["A1"].LoadFromDataTable(dataTable, true);
+                int numOfColumns = worksheet.Dimension.End.Column;
+                var columnRange = "A1:" +((char)(64 + numOfColumns)).ToString() + "1";
+                worksheet.Cells[columnRange].Style.Font.Bold = true;
+                worksheet.Cells[columnRange].Style.Border.Bottom.Style = OfficeOpenXml.Style.ExcelBorderStyle.Thick;
+                for(int i = 1; i <= numOfColumns; i++)
+                { worksheet.Column(i).Width = 25; }
+
+                file = package.GetAsByteArray();
+            }
+            return File(file,"application/vnd.ms-excel","Transaction Report.xlsx");
         }
     }
 }
