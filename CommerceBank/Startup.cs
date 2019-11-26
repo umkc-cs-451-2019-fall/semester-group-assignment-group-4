@@ -52,9 +52,14 @@ namespace CommerceBank
 
             app.UseEndpoints(endpoints =>
             {
+                //endpoints.MapControllerRoute(
+                //    name: "ReportsGetAlertTransactions",
+                //    pattern: "Reports/GetSelectedAlertsTransactions/{id=0}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=GetInitialLoadTransactionData}/{id?}"
+                    );
             });
 
             app.UseSpa(spa =>

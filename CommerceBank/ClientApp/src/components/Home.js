@@ -12,8 +12,7 @@ export class Home extends Component {
     }
 
     componentDidMount() {
-        this.GetInitialLoadTransactionData();
-        
+        this.GetInitialLoadTransactionData();    
     }
     static renderTransactionTable(TransactionData) {
         return (

@@ -5,49 +5,58 @@ import './styles/Reports.css';
 export class Reports extends Component {
     constructor(props) {
         super(props);
-        this.state = { rule1: false, rule2: false, rule3: false, TransactionData: []};
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.renderCheckBox = this.renderCheckBox.bind(this);
+        this.renderTransactionTable = this.renderTransactionTable.bind(this);
+        this.state = { loading: true, TransactionData: [], clientAlerts: [], selectedAlert: null};
     }
 
-    handleInputChange(event) {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name
-
-        this.setState({ [name]: value})
+    handleInputChange = (event) => {
+        var selectedAlertID = event.currentTarget.defaultValue;
+        this.setState({ selectedAlert: selectedAlertID });
     }
 
-    static renderCheckBox() {
+    componentDidMount() {
+        this.GetClientAlerts();
+    }
+
+    componentDidUpdate() {
+        if (this.state.selectedAlert != null) {
+            this.LoadSelectedAlertsTransactions(this.state.selectedAlert);
+        }
+    }
+
+    async LoadSelectedAlertsTransactions(selectedAlert) {
+        const response = await fetch('Reports/GetSelectedAlertsTransactions/' + selectedAlert);
+        const data = await response.json();
+        this.setState({ TransactionData: data });
+    }
+
+    async GetClientAlerts() {
+        const response = await fetch('Reports/GetClientAlertsIDAndName');
+        const data = await response.json();
+        this.setState({ clientAlerts: data, loading: false });
+    }
+
+    renderCheckBox(clientAlerts) {
         return (
             <table className='table table-striped' aria-labelledby="tableLable">
-                <tr>
-                    <label className="option">
-                        <input name="rule1" type="checkbox"
-                            //checked={this.state.rule1}
-                            onChange={this.handleInputChange} />
-                        <text className="ruleText">rule 1</text>
-                    </label>
-                </tr>
-                <tr>
-                    <label className="option">
-                        <input name="rule2" type="checkbox"
-                            //checked={this.state.rule2}
-                            onChange={this.handleInputChange} />
-                            <text className="ruleText">rule 2</text>
-                    </label>
-                </tr>
-                <tr>
-                    <label className="option">
-                        <input name="rule3" type="checkbox"
-                            //checked={this.state.rule3}
-                            onChange={this.handleInputChange} />
-                        <text className="ruleText">rule 3</text>
-                    </label>
-                </tr>
+                <tbody>
+                    {clientAlerts.map(Alerts =>
+                        <tr key={Alerts.alertsID}>
+                            <td>
+                                <label className="option">
+                                    <input value={Alerts.alertsID} name="alertOption" type="radio" onClick={this.handleInputChange}/>
+                                    <text> {Alerts.alertName} </text>
+                                </label>
+                            </td>
+                        </tr>)}
+                </tbody>
             </table>
         )
     }
 
-    static renderTransactionTable(TransactionData) {
+    renderTransactionTable(TransactionData) {
         return (
             <table className='table table-striped' aria-labelledby="tableLable">
                 <thead>
@@ -82,15 +91,15 @@ export class Reports extends Component {
         // contents = (if this.state.loading = false then it equals <p> ..</p>
         // else it equals the transaction table function data found above)
         //just a placeholder until the business rules actually fetch data from the sql server
-        let checkboxes = this.state.loading ? <p><em>Loading...</em></p> : Reports.renderCheckBox();
+        let checkboxes = this.state.loading ? <p><em>Loading...</em></p> : this.renderCheckBox(this.state.clientAlerts);
         
-        let transactionTable = this.state.loading ? <p><em>Loading...</em></p> : Reports.renderTransactionTable(this.state.TransactionData);
+        let transactionTable = this.state.loading ? <p><em>Loading...</em></p> : this.renderTransactionTable(this.state.TransactionData);
          
         return (
             <div className="ReportsPageMainDivClassName">
                 <div>
                     <div className="reportsContainterDiv">
-                        <CollapsibleComponent header= 'Business Rules' content={checkboxes} componentID="1" />
+                        <CollapsibleComponent header= 'Alerts' content={checkboxes} componentID="1" />
                     </div>
                     <div className="reportsContainterDiv">
                         <CollapsibleComponent header= 'Notifications' content={transactionTable} componentID="4" />
