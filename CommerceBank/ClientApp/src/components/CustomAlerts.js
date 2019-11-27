@@ -72,7 +72,7 @@ export class CustomAlerts extends Component {
         //            DeleteAlertID: null
         //        })}
         //})
-        var url = 'CustomAlerts/PostNewAlert/?Filters=' + Filters;
+        var url = 'CustomAlerts/PostNewAlert/?Filters=' + Filters + '&AlertName=' + 'Test Name';
         const response = await fetch(url);
         const data = await response.json();
         this.state.numberOfConditions = [{ value: "Select A Trigger", id: 1, dropDownState: false }];

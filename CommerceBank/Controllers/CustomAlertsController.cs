@@ -71,10 +71,10 @@ namespace CommerceBank.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ReportsAlertModel> PostNewAlert(string Filters)
+        public IEnumerable<ReportsAlertModel> PostNewAlert(string Filters, string AlertName)
         {
             var AlertsList = new List<ReportsAlertModel>();
-            var filterParams = JsonConvert.DeserializeObject<NewAlertModel>(Filters);
+            var filterParams = JsonConvert.DeserializeObject<List<NewAlertModel>>(Filters);
             using (var connection = new SqlConnection("Server=.; Database=CCG4; Trusted_Connection=True;"))
             {
                 connection.Open();
@@ -82,6 +82,7 @@ namespace CommerceBank.Controllers
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.Parameters.Add("@AccountID", System.Data.SqlDbType.Int).Value = 211111110; //TODO: This is harded coded in worst case
+                    command.Parameters.
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())

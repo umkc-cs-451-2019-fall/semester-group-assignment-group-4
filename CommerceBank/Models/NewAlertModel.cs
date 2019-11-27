@@ -7,8 +7,8 @@ namespace CommerceBank.Models
 {
     public class NewAlertModel
     {
-        public IEnumerable<int> DivID { get; set; }
-        public IEnumerable<int> AlertID { get; set; }
-        public IEnumerable<string> value { get; set; }
+        public int DivID { get; set; }
+        public int AlertID { get; set; }
+        public string value { get; set; }
     }
 }
