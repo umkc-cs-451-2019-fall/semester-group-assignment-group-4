@@ -14,8 +14,8 @@ namespace CommerceBank.Controllers
 {
     public class ReportsController: ControllerBase
     {
-        private readonly ILogger<HomeController> _logger;
-        public ReportsController(ILogger<HomeController> logger)
+        private readonly ILogger<ReportsController> _logger;
+        public ReportsController(ILogger<ReportsController> logger)
         {
             _logger = logger;
         }

@@ -23,3 +23,18 @@
     padding-left: 10px;
     padding-right: 10px;
 }
+
+.dropdownOptions
+{
+    background-color: seagreen;
+}
+
+.AddCondition
+{
+    margin-left: 10px;
+}
+
+.UserInputField
+{
+    display: none;
+}
