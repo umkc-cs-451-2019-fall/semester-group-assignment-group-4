@@ -6,7 +6,12 @@
     padding: 18px;
     white-space: nowrap;
 }
-
+.AlertsContainterDiv {
+    width: 95%;
+    margin-top: 10px;
+    left: 17%;
+    position: relative
+}
 .ruleSelectionContainer {
     padding-left: 17%;
     width: 100%;
@@ -34,7 +39,11 @@
     margin-left: 10px;
 }
 
-.UserInputField
+.RemoveCondition
 {
+    margin-left: 10px;
+}
+
+.UserInputField {
     display: none;
 }

@@ -1,4 +1,5 @@
 ﻿import React, { Component, useState } from 'react';
+import { CollapsibleComponent } from './shared/CollapsibleComponent';
 import './styles/CustomAlerts.css';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
@@ -9,24 +10,54 @@ export class CustomAlerts extends Component {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.renderDropDown = this.renderDropDown.bind(this);
+        this.renderAllAlerts = this.renderAllAlerts.bind(this);
         this.dropDownOptionSelected = this.dropDownOptionSelected.bind(this);
         this.handleUserInput = this.handleUserInput.bind(this);
         this.addCondition = this.addCondition.bind(this);
+        this.removeCondition = this.removeCondition.bind(this);
+        this.restConditions = this.restConditions.bind(this);
+        this.getAllAlert = this.getAllAlert.bind(this);
+        this.deleteRule = this.deleteRule.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);    
         this.state = {
-            AlertFilters: []
+            AlertFilters: [],
+            AllAlerts:[]
             , numberOfConditions: [{ value: "Select A Trigger", id: 1, dropDownState: false }]
-            , UserInput: [{DivID:0,AlertID:0,value:""}]
+            , UserInput: [{ DivID: 0, AlertID: 0, value: "" }]
+            , DeleteAlertID: null
         };
     }
 
     componentDidMount() {
         this.getAllAlertFilters();
+        this.getAllAlert();
     }
 
+    componentDidUpdate() {
+        if (this.state.DeleteAlertID != null) {
+            this.deleteRule(this.state.DeleteAlertID);
+        }
+    }
     async getAllAlertFilters() {
         const response = await fetch('CustomAlerts/GetAlertFiltersAndIDs');
         const data = await response.json();
         this.setState({ AlertFilters: data});
+    }
+    async getAllAlert() {
+        const response = await fetch('Reports/GetClientAlertsIDAndName');
+        const data = await response.json();
+        this.setState({ AllAlerts: data});
+    }
+
+    async deleteRule(ID) {
+        const response = await fetch('CustomAlerts/DeleteAlert/' + ID);
+        const data = await response.json();
+        this.setState({ AllAlerts: data, DeleteAlertID: null});
+    }
+
+    handleDelete(event) {
+        var ID = event.target.value;
+        this.setState({ DeleteAlertID: ID });
     }
 
     toggle(event) {
@@ -53,6 +84,24 @@ export class CustomAlerts extends Component {
         this.setState({ numberOfConditions: this.state.numberOfConditions, UserInput: this.state.UserInput })
     }
 
+    removeCondition(event) {
+        var elementToRemoveID = parseInt(event.target.id);
+        if (this.state.numberOfConditions.length > 1) {
+            document.getElementById("RuleCreationDiv_" + elementToRemoveID).style.display = "none";
+            this.state.UserInput[elementToRemoveID - 1].AlertID = 0;
+            this.state.UserInput[elementToRemoveID - 1].DivID = 0;
+            this.state.UserInput[elementToRemoveID - 1].value = "";
+            this.setState({ UserInput: this.state.UserInput });
+        }
+    }
+    restConditions() {
+        this.state.numberOfConditions = [{ value: "Select A Trigger", id: 1, dropDownState: false }];
+        this.state.UserInput = [{ DivID: 0, AlertID: 0, value: "" }];
+        this.setState({
+            numberOfConditions: this.state.numberOfConditions,
+            UserInput: this.state.UserInput
+        })
+    }
     handleUserInput(event) {
         var userValue = event.target.value;
         var updateID = parseInt(event.target.id.split("_")[1]);
@@ -74,16 +123,42 @@ export class CustomAlerts extends Component {
                         </Dropdown>
                         <input type="text" placeholder="Enter a value" onBlur={this.handleUserInput} className={"UserInputField"} id={"input_" + numberOfConditions.id}></input>
                         <button onClick={this.addCondition} className="AddCondition" title="Add another condition">+</button>
+                        <button onClick={this.removeCondition} className="RemoveCondition" title="Remove this condition" id={numberOfConditions.id}>-</button>
                     </div>)
+        )
+    }
+
+    renderAllAlerts(AllAlerts) {
+        return (
+            <table className='table table-striped' aria-labelledby="tableLable">
+                <tbody>
+                    {AllAlerts.map(Alerts =>
+                        <tr key={Alerts.alertsID}>
+                            <td>
+                                <button value={Alerts.alertsID} title="Delete this rule" onClick={this.handleDelete}> X </button>
+                                <label className="option">
+                                    <text> {Alerts.alertName} </text>
+                                </label>
+                            </td>
+                        </tr>)}
+                </tbody>
+            </table>
         )
     }
 
     render() {
         return (
-            <div className="ruleSelectionContainer">
-                <div>Custom Rules Selector</div>
-                {this.renderDropDown()}
+            <div>
+                <div className="ruleSelectionContainer">
+                    <div>Custom Rules Selector</div>
+                    {this.renderDropDown()}
+                    <button onClick={this.restConditions} className="RestConditions" title="Reset the custom alert">Rest</button>
+                </div>
+                <div className="AlertsContainterDiv">
+                    <CollapsibleComponent header='Alerts' content={this.renderAllAlerts(this.state.AllAlerts)} componentID="ActiveAlerts" />
+                </div>
             </div>
+
         );
     }
 }
