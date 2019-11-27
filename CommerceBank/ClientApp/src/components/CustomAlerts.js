@@ -18,7 +18,9 @@ export class CustomAlerts extends Component {
         this.restConditions = this.restConditions.bind(this);
         this.getAllAlert = this.getAllAlert.bind(this);
         this.deleteRule = this.deleteRule.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);    
+        this.handleDelete = this.handleDelete.bind(this);
+        this.CreateNewRule = this.CreateNewRule.bind(this);
+        this.PostNewRule = this.PostNewRule.bind(this);
         this.state = {
             AlertFilters: [],
             AllAlerts:[]
@@ -53,6 +55,40 @@ export class CustomAlerts extends Component {
         const response = await fetch('CustomAlerts/DeleteAlert/' + ID);
         const data = await response.json();
         this.setState({ AllAlerts: data, DeleteAlertID: null});
+    }
+
+    async PostNewRule(Filters) {
+        //$.ajax({
+        //    url: 'CustomeAlerts/PostNewAlert/',
+        //    type: 'GET',
+        //    data: { Filters: Filters },
+        //    success: function (result) {
+        //        this.state.numberOfConditions = [{ value: "Select A Trigger", id: 1, dropDownState: false }];
+        //        this.state.UserInput = [{ DivID: 0, AlertID: 0, value: "" }];
+        //        this.setState({
+        //            numberOfConditions: this.state.numberOfConditions,
+        //            UserInput: this.state.UserInput,
+        //            AllAlerts: result,
+        //            DeleteAlertID: null
+        //        })}
+        //})
+        var url = 'CustomAlerts/PostNewAlert/?Filters=' + Filters;
+        const response = await fetch(url);
+        const data = await response.json();
+        this.state.numberOfConditions = [{ value: "Select A Trigger", id: 1, dropDownState: false }];
+        this.state.UserInput = [{ DivID: 0, AlertID: 0, value: "" }];
+        this.setState({
+            numberOfConditions: this.state.numberOfConditions,
+            UserInput: this.state.UserInput,
+            AllAlerts: data,
+            DeleteAlertID: null
+        })
+    }
+
+    CreateNewRule() {
+        //var FiltersString = encodeURIComponent(JSON.stringify(this.state.UserInput));
+        var FiltersString = JSON.stringify(this.state.UserInput);
+        this.PostNewRule(FiltersString);
     }
 
     handleDelete(event) {
@@ -94,6 +130,7 @@ export class CustomAlerts extends Component {
             this.setState({ UserInput: this.state.UserInput });
         }
     }
+
     restConditions() {
         this.state.numberOfConditions = [{ value: "Select A Trigger", id: 1, dropDownState: false }];
         this.state.UserInput = [{ DivID: 0, AlertID: 0, value: "" }];
@@ -102,10 +139,12 @@ export class CustomAlerts extends Component {
             UserInput: this.state.UserInput
         })
     }
+
     handleUserInput(event) {
         var userValue = event.target.value;
         var updateID = parseInt(event.target.id.split("_")[1]);
-        this.state.UserInput.filter(userinput => userinput.DivID == updateID).value = userValue;
+        this.state.UserInput[updateID - 1].value = userValue;
+        this.setState({ UserInput: this.state.UserInput });
     }
 
     renderDropDown() {
@@ -153,6 +192,7 @@ export class CustomAlerts extends Component {
                     <div>Custom Rules Selector</div>
                     {this.renderDropDown()}
                     <button onClick={this.restConditions} className="RestConditions" title="Reset the custom alert">Rest</button>
+                    <button onClick={this.CreateNewRule} className="CreateRule">Create</button>
                 </div>
                 <div className="AlertsContainterDiv">
                     <CollapsibleComponent header='Alerts' content={this.renderAllAlerts(this.state.AllAlerts)} componentID="ActiveAlerts" />
