@@ -6,7 +6,12 @@
     padding: 18px;
     white-space: nowrap;
 }
-
+.AlertsContainterDiv {
+    width: 95%;
+    margin-top: 10px;
+    left: 17%;
+    position: relative
+}
 .ruleSelectionContainer {
     padding-left: 17%;
     width: 100%;
@@ -22,4 +27,23 @@
     display: inline;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.dropdownOptions
+{
+    background-color: seagreen;
+}
+
+.AddCondition
+{
+    margin-left: 10px;
+}
+
+.RemoveCondition
+{
+    margin-left: 10px;
+}
+
+.UserInputField {
+    display: none;
 }
