@@ -57,22 +57,8 @@ export class CustomAlerts extends Component {
         this.setState({ AllAlerts: data, DeleteAlertID: null});
     }
 
-    async PostNewRule(Filters) {
-        //$.ajax({
-        //    url: 'CustomeAlerts/PostNewAlert/',
-        //    type: 'GET',
-        //    data: { Filters: Filters },
-        //    success: function (result) {
-        //        this.state.numberOfConditions = [{ value: "Select A Trigger", id: 1, dropDownState: false }];
-        //        this.state.UserInput = [{ DivID: 0, AlertID: 0, value: "" }];
-        //        this.setState({
-        //            numberOfConditions: this.state.numberOfConditions,
-        //            UserInput: this.state.UserInput,
-        //            AllAlerts: result,
-        //            DeleteAlertID: null
-        //        })}
-        //})
-        var url = 'CustomAlerts/PostNewAlert/?Filters=' + Filters + '&AlertName=' + 'Test Name';
+    async PostNewRule(Filters, AlertName) {
+        var url = 'CustomAlerts/PostNewAlert/?Filters=' + Filters + '&AlertName=' + AlertName;
         const response = await fetch(url);
         const data = await response.json();
         this.state.numberOfConditions = [{ value: "Select A Trigger", id: 1, dropDownState: false }];
@@ -86,9 +72,14 @@ export class CustomAlerts extends Component {
     }
 
     CreateNewRule() {
-        //var FiltersString = encodeURIComponent(JSON.stringify(this.state.UserInput));
-        var FiltersString = JSON.stringify(this.state.UserInput);
-        this.PostNewRule(FiltersString);
+        var alertName = document.getElementById("AlertName").value;
+        if (alertName != null && alertName != "") {
+            var checkForInput = this.state.UserInput.filter(userInputs => userInputs.AlertID != 0)
+            if (checkForInput.length > 0) {
+                var FiltersString = JSON.stringify(this.state.UserInput);
+                this.PostNewRule(FiltersString, alertName);
+            }
+        }
     }
 
     handleDelete(event) {
@@ -189,7 +180,8 @@ export class CustomAlerts extends Component {
         return (
             <div>
                 <div className="ruleSelectionContainer">
-                    <div>Custom Rules Selector</div>
+                    <div>Custom Alert Creator</div>
+                    <input type="text" placeholder="Enter Alert Name" id="AlertName"/>
                     {this.renderDropDown()}
                     <button onClick={this.restConditions} className="RestConditions" title="Reset the custom alert">Rest</button>
                     <button onClick={this.CreateNewRule} className="CreateRule">Create</button>

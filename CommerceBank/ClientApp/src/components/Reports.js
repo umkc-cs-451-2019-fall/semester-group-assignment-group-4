@@ -108,10 +108,10 @@ export class Reports extends Component {
                     <div className="reportsContainterDiv">
                         <CollapsibleComponent header= 'Alerts' content={checkboxes} componentID="1" />
                     </div>
+                    <button id="exportButton" onClick={this.exportTransactionReportAsExcelFile} title="Export Transaction Report To Excel"> Export </button>
                     <div className="reportsContainterDiv">
                         <CollapsibleComponent header= 'Notifications' content={transactionTable} componentID="4" />
                     </div>
-                    <button id="exportButton" onClick={this.exportTransactionReportAsExcelFile}> Export </button>
                 </div>
             </div>
         );
