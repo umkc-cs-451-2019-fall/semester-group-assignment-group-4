@@ -24,10 +24,11 @@ namespace CommerceBank.Controllers
         public IEnumerable<ReportsAlertModel> GetClientAlertsIDAndName()
         {
             var AlertsList = new List<ReportsAlertModel>();
-
+            /*
             using (var connection = new SqlConnection("Server=.; Database=CCG4; Trusted_Connection=True;"))
             {
-                connection.Open();
+               
+               1connection.Open();
                 using (var command = new SqlCommand("[dbo].[spGET_Account_Alert_NamesAndID]", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
@@ -45,6 +46,7 @@ namespace CommerceBank.Controllers
                     }
                 }
             }
+            */
             return AlertsList.ToArray();
         }
 

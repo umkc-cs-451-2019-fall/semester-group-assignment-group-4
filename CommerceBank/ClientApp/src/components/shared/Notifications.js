@@ -21,10 +21,10 @@ export class Notifications extends Component {
         return (
         <div>
         <NavLink tag={Link} className="links" to="/Reports">
-            <text className="text">Example Numero Uno</text>
+            <text className="textLin">ID: 12309887   11/20/1994</text>
         </NavLink>
         <NavLink tag={Link} className="links" to="/Reports">
-            <text className="text">Example Numero Dos</text>
+            <text className="textLin">ID: 12529887   11/10/1998</text>
         </NavLink>
         </div>
             );
@@ -43,6 +43,7 @@ export class Notifications extends Component {
         return (
             <div onClick={this.toggleClass}
                 className={this.state.tabHover || this.state.active ? "notiContainer tabConExpand" : "notiContainer tabConExpand tabConShrink"}>
+                <text className="notiTitle"> Notifications </text>
                 <img src={Logo}
                     onMouseOut={this.toggleHover}
                     onMouseEnter={this.toggleHover}

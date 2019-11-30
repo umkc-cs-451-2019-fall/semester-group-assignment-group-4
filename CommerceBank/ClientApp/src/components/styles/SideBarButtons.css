@@ -56,8 +56,11 @@
 @keyframes expand {
     from {
         width: 3em;
-    } to {
+        color: #ffffff;
+    }
+    to {
         width: 100%;
+        color: seagreen;
     }
 }
 

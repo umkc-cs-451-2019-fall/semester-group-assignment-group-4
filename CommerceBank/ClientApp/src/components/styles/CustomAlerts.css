@@ -1,4 +1,35 @@
-﻿.selectionDiv {
+﻿.btn-secondary {
+    background-color: #dcece3;
+    color: black;
+}
+
+.RestConditions {
+    border: none;
+    background-color: seagreen;
+    margin: 10px;
+    font-weight: bold;
+    color: #dcece3;
+}
+
+.CreateRule {
+    border: none;
+    background-color: seagreen;
+    margin: 10px;
+    font-weight: bold;
+    color: #dcece3;
+}
+
+.RestConditions:hover {
+    color: #226540;
+    box-shadow: inset 0 0 10px #226540;
+}
+
+.CreateRule:hover {
+    color: #226540;
+    box-shadow: inset 0 0 10px #226540;
+}
+
+.selectionDiv {
     width: 95%;
     margin-top: 10px;
     left: 17%;
@@ -6,12 +37,15 @@
     padding: 18px;
     white-space: nowrap;
 }
+
 .AlertsContainterDiv {
-    width: 95%;
+    width: 82.5%;
     margin-top: 10px;
     left: 17%;
-    position: relative
+    position: relative;
+    top: -10em;
 }
+
 .ruleSelectionContainer {
     padding-left: 17%;
     width: 100%;
@@ -46,4 +80,18 @@
 
 .UserInputField {
     display: none;
+}
+
+.buttonAdj {
+    width: 2em;
+    height: 2em;
+    background-color: seagreen;
+    border: none;
+    color: #dcece3;
+    font-weight: bold;
+}
+
+.buttonAdj:hover {
+    color: #226540;
+    box-shadow: inset 0 0 10px #226540;
 }

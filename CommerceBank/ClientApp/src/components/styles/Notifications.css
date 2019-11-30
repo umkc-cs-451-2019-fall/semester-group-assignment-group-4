@@ -73,6 +73,27 @@
     from { height: 20em; opacity: 1; }
     to { height: 0; opacity: 0; }
 }
+
+.notiTitle {
+    height: 100%;
+    width: 100%;
+    padding-top: .7em;
+    padding-right: .7em;
+    left: 4em;
+    white-space: nowrap;
+    color: #ffffff;
+    position: absolute;
+    font-weight: bold;
+}
+
+.textLin {
+    margin-left: 1em;
+}
+
+.textLin:hover {
+    color: black;
+}
+
 /* SHAKING ANIMATION
 .Icon:hover {
     animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
