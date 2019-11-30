@@ -30,17 +30,13 @@ namespace CommerceBank.Controllers
         {
             var transactionDataInitial = new List<TransactionModel>();
 
-            //TransactionModel transactionDataInitial = new TransactionModel();
-
-           /*
-
-            using (var connection = new SqlConnection("Server=.\\CCG4; Database=CCG4; Trusted_Connection=True;"))
+            using (var connection = new SqlConnection("Server=.; Database=CCG4; Trusted_Connection=True;"))
             {
                 connection.Open();
                 using (var command = new SqlCommand("[dbo].[spGET_ALL_TransactionTable_Data_BasedOnAccountID]", connection))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.Add("@AccountID", System.Data.SqlDbType.Int).Value = 11011;
+                    command.Parameters.Add("@AccountID", System.Data.SqlDbType.Int).Value = 211111110; //TODO: This is harded coded in worst case
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -49,25 +45,21 @@ namespace CommerceBank.Controllers
                             //Throwing DBNull exceptions
                             //either fill all nulls in table or create a way to check and override the exception
                             // that wont mess up the resulting rendering of the query diplay in the API
-                            initialData.TransactionId = Convert.ToInt32(reader["TransactionId"]);
+                            initialData.TransactionId = Convert.ToInt32(reader["TransactionID"]);
 
                             initialData.TransactionAmount = Convert.ToDecimal(reader["TransactionAmount"]);
 
-                            initialData.TransactionDate = Convert.ToDateTime(reader["TransactionDate"]);
+                            initialData.TransactionDate = Convert.ToDateTime(reader["Date"]).ToString("yyyy-MM-dd");
 
-                            initialData.TransactionDescription = reader["TransactionDescription"].ToString();
+                            initialData.TransactionDescription = reader["TransactionDetails"].ToString();
 
                             initialData.TransactionType = reader["TransactionType"].ToString();
 
-                            initialData.AccountBalance = Convert.ToDecimal(reader["AccountBalance"]);
                             transactionDataInitial.Add(initialData);
                         }    
                     }
                 }
             }
-
-    */
-
             return transactionDataInitial.ToArray();
         }
         

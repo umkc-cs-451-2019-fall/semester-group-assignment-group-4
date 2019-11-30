@@ -16,7 +16,7 @@ namespace CommerceBank.Models
         public int? AccountId { get; set; }
 
         [Column(TypeName = "datetime")]
-        public DateTime? TransactionDate { get; set; }
+        public string TransactionDate { get; set; }
 
         public decimal? AccountBalance { get; set; }
 
