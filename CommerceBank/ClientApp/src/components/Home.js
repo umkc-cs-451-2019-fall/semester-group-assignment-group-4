@@ -49,7 +49,7 @@ export class Home extends Component {
         // contents = (if this.state.loading = false then it equals <p> ..</p>
         // else it equals the transaction table function data found above)
         let contents = this.state.loading ? <p><em>Loading...</em></p> : Home.renderTransactionTable(this.state.TransactionData);
-        let contents1 = this.state.loading ? <p><em>Loading...</em></p> : Home.renderTransactionTable(this.state.SavingsData);
+        let contents1 = this.state.loading ? <p><em>Loading...</em></p> : Home.renderTransactionTable(this.state.TransactionData);
         let checkingHeader = `Checking - ${this.state.CheckingBalance}`;
         let savingsHeader = `Savings - ${this.state.SavingsBalance}`;
         return (

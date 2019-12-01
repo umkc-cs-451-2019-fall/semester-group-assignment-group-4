@@ -18,12 +18,13 @@ namespace CommerceBank.Models
         [Column(TypeName = "datetime")]
         public string TransactionDate { get; set; }
 
-        public decimal? AccountBalance { get; set; }
+        public string? AccountBalance { get; set; }
 
         [StringLength(255)]
         public string TransactionType { get; set; }
 
-        public decimal? TransactionAmount { get; set; }
+        [StringLength(255)]
+        public string? TransactionAmount { get; set; }
 
         [StringLength(255)]
         public string TransactionDescription { get; set; }

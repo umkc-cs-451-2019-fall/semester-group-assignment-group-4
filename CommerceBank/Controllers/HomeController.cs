@@ -47,7 +47,7 @@ namespace CommerceBank.Controllers
                             // that wont mess up the resulting rendering of the query diplay in the API
                             initialData.TransactionId = Convert.ToInt32(reader["TransactionID"]);
 
-                            initialData.TransactionAmount = Convert.ToDecimal(reader["TransactionAmount"]);
+                            initialData.TransactionAmount = String.Format("{0:0.00}", Convert.ToDecimal(reader["TransactionAmount"]).ToString());
 
                             initialData.TransactionDate = Convert.ToDateTime(reader["Date"]).ToString("yyyy-MM-dd");
 
@@ -60,6 +60,8 @@ namespace CommerceBank.Controllers
                     }
                 }
             }
+
+
             return transactionDataInitial.ToArray();
         }
         
