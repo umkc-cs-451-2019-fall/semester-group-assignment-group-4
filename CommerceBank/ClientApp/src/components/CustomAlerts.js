@@ -152,8 +152,8 @@ export class CustomAlerts extends Component {
                         </DropdownMenu>
                         </Dropdown>
                         <input type="text" placeholder="Enter a value" onBlur={this.handleUserInput} className={"UserInputField"} id={"input_" + numberOfConditions.id}></input>
-                        <button onClick={this.addCondition} className="AddCondition" title="Add another condition">+</button>
-                        <button onClick={this.removeCondition} className="RemoveCondition" title="Remove this condition" id={numberOfConditions.id}>-</button>
+                        <button onClick={this.addCondition} className="AddCondition buttonAdj" title="Add another condition">+</button>
+                        <button onClick={this.removeCondition} className="RemoveCondition buttonAdj" title="Remove this condition" id={numberOfConditions.id}>-</button>
                     </div>)
         )
     }
@@ -183,11 +183,11 @@ export class CustomAlerts extends Component {
                     <div>Custom Alert Creator</div>
                     <input type="text" placeholder="Enter Alert Name" id="AlertName"/>
                     {this.renderDropDown()}
-                    <button onClick={this.restConditions} className="RestConditions" title="Reset the custom alert">Rest</button>
+                    <button onClick={this.restConditions} className="RestConditions" title="Reset the custom alert">Reset</button>
                     <button onClick={this.CreateNewRule} className="CreateRule">Create</button>
                 </div>
                 <div className="AlertsContainterDiv">
-                    <CollapsibleComponent header='Alerts' content={this.renderAllAlerts(this.state.AllAlerts)} componentID="ActiveAlerts" />
+                    <CollapsibleComponent  header='Alerts' content={this.renderAllAlerts(this.state.AllAlerts)} componentID="ActiveAlerts" />
                 </div>
             </div>
 

@@ -1,4 +1,17 @@
-﻿.reportsContainterDiv {
+﻿#exportButton {
+    border: none;
+    background-color: seagreen;
+    color: #dcece3;
+    font-weight: bold;
+    height: 2em;
+}
+
+    #exportButton:hover {
+        color: #226540;
+        box-shadow: inset 0 0 10px #226540;
+    }
+
+.reportsContainterDiv {
     width: 95%;
     margin-top: 10px;
     left: 17%;

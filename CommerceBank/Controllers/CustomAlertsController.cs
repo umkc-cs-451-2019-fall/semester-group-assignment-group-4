@@ -20,7 +20,7 @@ namespace CommerceBank.Controllers
         public IEnumerable<AlertFiltersModel> GetAlertFiltersAndIDs()
         {
             var alertFiltersList = new List<AlertFiltersModel>();
-
+            /*
             using (var connection = new SqlConnection("Server=.; Database=CCG4; Trusted_Connection=True;"))
             {
                 connection.Open();
@@ -39,6 +39,7 @@ namespace CommerceBank.Controllers
                     }
                 }
             }
+            */
             return alertFiltersList.ToArray();
         }
 
