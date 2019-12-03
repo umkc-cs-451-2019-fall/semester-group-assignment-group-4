@@ -12,7 +12,29 @@
     padding-right: .7em;
     float: right;
     white-space: nowrap;
-    color: #ffffff;
+    color: seagreen;
+
+    animation: textCollapse 1s forwards;
+}
+
+.textExpand {
+    animation: textExpand 1s forwards;
+}
+
+@keyframes textExpand {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
+@keyframes textCollapse {
+    from {
+        opacity: 1;
+    } to {
+        opacity: 0;
+    }
 }
 
 .nav-link {

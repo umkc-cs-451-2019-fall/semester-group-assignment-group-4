@@ -50,19 +50,19 @@ export class SideBarButtons extends Component {
                 <NavLink tag={Link} className={this.state.homeHover ? "navbar navText" : "navbar"} to="/">
                     <div className={this.state.homeHover ? "item itemExpand" : "item"}>
                         <img onMouseOut={this.toggleHover.bind(this, home)} onMouseEnter={this.toggleHover.bind(this, home)} src={homeIcon} className="navIcon"></img>
-                        <text className="text">Home</text>
+                        <text className={this.state.homeHover ? "text textExpand" : "text"}>Home</text>
                     </div>
                 </NavLink>
                 <NavLink className="navbar" tag={Link} to="/Reports">
                     <div className={this.state.reportsHover ? "item itemExpand" : "item"}>
                         <img onMouseOut={this.toggleHover.bind(this, reports)} onMouseEnter={this.toggleHover.bind(this, reports)} src={reportIcon} className="navIcon"></img>
-                        <text className="text">Reports</text>
+                        <text className={this.state.reportsHover ? "text textExpand" : "text"}>Reports</text>
                     </div>
                 </NavLink>
                 <NavLink className="navbar" tag={Link} to="/CustomAlerts">
                     <div className={this.state.customHover ? "item itemExpand" : "item"}>
                         <img onMouseOut={this.toggleHover.bind(this, custom)} onMouseEnter={this.toggleHover.bind(this, custom)} src={customIcon} className="navIcon"></img>
-                        <text className="text">Custom Alerts</text>
+                        <text className={this.state.customHover ? "text textExpand" : "text"}>Custom Alerts</text>
                     </div>
                 </NavLink>
                 <Notifications />

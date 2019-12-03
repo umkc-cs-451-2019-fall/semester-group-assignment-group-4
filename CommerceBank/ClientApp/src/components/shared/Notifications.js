@@ -43,7 +43,7 @@ export class Notifications extends Component {
         return (
             <div onClick={this.toggleClass}
                 className={this.state.tabHover || this.state.active ? "notiContainer tabConExpand" : "notiContainer tabConExpand tabConShrink"}>
-                <text className="notiTitle"> Notifications </text>
+                <text className={this.state.tabHover || this.state.active ? "notiTitleExpand notiTitle" : "notiTitle"}> Notifications </text>
                 <img src={Logo}
                     onMouseOut={this.toggleHover}
                     onMouseEnter={this.toggleHover}
