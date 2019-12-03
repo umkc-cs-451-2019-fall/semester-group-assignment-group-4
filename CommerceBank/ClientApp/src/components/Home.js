@@ -8,7 +8,7 @@ export class Home extends Component {
     static displayName = Home.name;
     constructor(props) {
         super(props)
-        this.state = {TransactionData: [], SavingsData: [], CheckingBalance: "$459.26", SavingsBalance: "$2,000.00", loading: true };
+        this.state = {TransactionData: [], SavingsData: [], CheckingBalance: "$4571.08", SavingsBalance: "$2,000.00", loading: true };
     }
 
     componentDidMount() {
@@ -19,24 +19,23 @@ export class Home extends Component {
             <table className='table table-striped' aria-labelledby="tableLable">
                 <thead>
                     <tr>
-                        <th> ID</th>
-                        <th> Type </th>
                         <th> Date </th>
-                        <th> Ammount </th>
+                        <th> Type </th>
+                        <th> Amount </th>
                         <th> Description</th>
-                        <th> Balance</th>
-               
+                        
+            
                     </tr>
                 </thead>
                 <tbody>
                     {TransactionData.map(Transaction =>
                         <tr key={Transaction.tansactionId}>  
-                            <td>{Transaction.transactionId}</td>
-                            <td>{Transaction.transactionType}</td>
+                         
                             <td>{Transaction.transactionDate}</td>
+                            <td>{Transaction.transactionType}</td>
                             <td>{Transaction.transactionAmount}</td>
                             <td>{Transaction.transactionDescription}</td>
-                            <td>{Transaction.accountBalance}</td>
+                            
                         </tr>
                     )}
                 </tbody>
@@ -58,9 +57,7 @@ export class Home extends Component {
                     <div className="homeContainterDiv">
                         <CollapsibleComponent header={checkingHeader} content={contents} componentID="1" />
                     </div>
-                    <div className="homeContainterDiv">
-                        <CollapsibleComponent header={savingsHeader} content={contents1} componentID="4" />
-                    </div>
+
                 </div>
             </div>
         );
