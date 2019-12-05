@@ -29,7 +29,7 @@ namespace CommerceBank.Controllers
         public IEnumerable<TransactionModel> GetInitialLoadTransactionData()
         {
             var transactionDataInitial = new List<TransactionModel>();
-            /*
+            
             using (var connection = new SqlConnection("Server=.; Database=CCG4; Trusted_Connection=True;"))
             {
                 connection.Open();
@@ -60,7 +60,7 @@ namespace CommerceBank.Controllers
                     }
                 }
             }
-            */
+            
             return transactionDataInitial.ToArray();
         }
         
