@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using CommerceBank.Models;
 using Microsoft.Data.SqlClient;
 using Apache.NMS.ActiveMQ.Commands;
-
+using System.Globalization;
 namespace CommerceBank.Controllers
 {
     [ApiController]
@@ -47,7 +47,7 @@ namespace CommerceBank.Controllers
                             // that wont mess up the resulting rendering of the query diplay in the API
                             initialData.TransactionId = Convert.ToInt32(reader["TransactionID"]);
 
-                            initialData.TransactionAmount = Convert.ToDecimal(reader["TransactionAmount"]);
+                            initialData.TransactionAmount = Convert.ToDecimal(reader["TransactionAmount"]).ToString("C", new CultureInfo("en-US"));
 
                             initialData.TransactionDate = Convert.ToDateTime(reader["Date"]).ToString("yyyy-MM-dd");
 

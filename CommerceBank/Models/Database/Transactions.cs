@@ -11,17 +11,17 @@ namespace CommerceBank.Models.Database
         public int? AccountId { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? TransactionDate { get; set; }
-        public int? AccountBalance { get; set; }
+        public double? AccountBalance { get; set; }
         [StringLength(255)]
         public string TransactionType { get; set; }
-        public int? TransactionAmount { get; set; }
+        public double? TransactionAmount { get; set; }
         [StringLength(255)]
         public string TransactionDescription { get; set; }
         [StringLength(255)]
         public string TransactionLocation { get; set; }
-        [Column(TypeName = "datetime")]
+        [StringLength(2)]
         public DateTime? TransactionTime { get; set; }
-        [StringLength(3)]
+        [Column(TypeName = "datetime")]
         public string DisputeBool { get; set; }
         [Key]
         [Column("TransactionID")]

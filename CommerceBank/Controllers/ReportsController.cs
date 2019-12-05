@@ -24,7 +24,7 @@ namespace CommerceBank.Controllers
         public IEnumerable<ReportsAlertModel> GetClientAlertsIDAndName()
         {
             var AlertsList = new List<ReportsAlertModel>();
-            
+            /*
             using (var connection = new SqlConnection("Server=.; Database=CCG4; Trusted_Connection=True;"))
             {
                
@@ -70,7 +70,7 @@ namespace CommerceBank.Controllers
                             
                             initialData.TransactionId = Convert.ToInt32(reader["TransactionID"]);
 
-                            initialData.TransactionAmount = Convert.ToDecimal(reader["TransactionAmount"]);
+                            initialData.TransactionAmount = Convert.ToDecimal(reader["TransactionAmount"]).ToString();
 
                             initialData.TransactionDate = Convert.ToDateTime(reader["Date"]).ToString("yyyy-MM-dd");
 
