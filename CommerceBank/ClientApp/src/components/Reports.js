@@ -68,24 +68,20 @@ export class Reports extends Component {
             <table className='table table-striped' aria-labelledby="tableLable">
                 <thead>
                     <tr>
-                        <th> Transaction Number</th>
                         <th> Type </th>
                         <th> Date </th>
                         <th> Ammount </th>
                         <th> Description</th>
-                        <th> Balance</th>
-
                     </tr>
                 </thead>
                 <tbody>
                     {TransactionData.map(Transaction =>
                         <tr key={Transaction.tansactionId}>
-                            <td>{Transaction.transactionId}</td>
-                            <td>{Transaction.transactionType}</td>
                             <td>{Transaction.transactionDate}</td>
+                            <td>{Transaction.transactionType}</td>
                             <td>{Transaction.transactionAmount}</td>
                             <td>{Transaction.transactionDescription}</td>
-                            <td>{Transaction.accountBalance}</td>
+                            <td>{Transaction.state}</td>
                         </tr>
                     )}
                 </tbody>

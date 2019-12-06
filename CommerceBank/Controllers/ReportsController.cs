@@ -24,7 +24,6 @@ namespace CommerceBank.Controllers
         public IEnumerable<ReportsAlertModel> GetClientAlertsIDAndName()
         {
             var AlertsList = new List<ReportsAlertModel>();
-            /*
             using (var connection = new SqlConnection("Server=.; Database=CCG4; Trusted_Connection=True;"))
             {
                
@@ -122,6 +121,42 @@ namespace CommerceBank.Controllers
                 file = package.GetAsByteArray();
             }
             return File(file,"application/vnd.ms-excel","Transaction Report.xlsx");
+        }
+
+        [HttpGet]
+        public IEnumerable<UserData> GetUserData(int id)
+        {
+            var userDetails = new List<UserData>();
+
+            using (var connection = new SqlConnection("Server=.; Database=CCG4; Trusted_Connection=True;"))
+            {
+                connection.Open();
+                using (var command = new SqlCommand("[dbo].[spGet_UserData]", connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.Add("@ID", System.Data.SqlDbType.Int).Value = id;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var initialData = new UserData();
+
+                            initialData.FirstName = reader["FirstName"].ToString();
+
+                            initialData.LastName = reader["LastName"].ToString();
+
+                            initialData.AccountID = Convert.ToInt32(reader["AccountID"]);
+
+                            initialData.Balance = Convert.ToDecimal(reader["Balance"]);
+
+                            initialData.HomeState = reader["HomeState"].ToString();
+
+                            userDetails.Add(initialData);
+                        }
+                    }
+                }
+            }
+            return userDetails.ToArray();
         }
     }
 }

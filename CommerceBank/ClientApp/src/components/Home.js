@@ -23,19 +23,18 @@ export class Home extends Component {
                         <th> Type </th>
                         <th> Amount </th>
                         <th> Description</th>
-                        
+                        <th> State</th>
             
                     </tr>
                 </thead>
                 <tbody>
                     {TransactionData.map(Transaction =>
                         <tr key={Transaction.tansactionId}>  
-                         
                             <td>{Transaction.transactionDate}</td>
                             <td>{Transaction.transactionType}</td>
                             <td>{Transaction.transactionAmount}</td>
                             <td>{Transaction.transactionDescription}</td>
-                            
+                            <td>{Transaction.state}</td>
                         </tr>
                     )}
                 </tbody>
