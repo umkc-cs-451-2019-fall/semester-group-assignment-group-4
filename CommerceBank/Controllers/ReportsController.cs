@@ -77,6 +77,8 @@ namespace CommerceBank.Controllers
 
                             initialData.TransactionType = reader["TransactionType"].ToString();
 
+                            initialData.State = reader["State"].ToString();
+
                             transactionDataInitial.Add(initialData);
                         }
                     }

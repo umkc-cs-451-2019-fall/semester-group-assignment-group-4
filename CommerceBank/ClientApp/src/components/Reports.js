@@ -72,6 +72,7 @@ export class Reports extends Component {
                         <th> Date </th>
                         <th> Ammount </th>
                         <th> Description</th>
+                        <th> State </th>
                     </tr>
                 </thead>
                 <tbody>
