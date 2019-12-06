@@ -30,7 +30,7 @@ namespace CommerceBank.Models
         public string TransactionDescription { get; set; }
 
         [StringLength(255)]
-        public string TransactionLocation { get; set; }
+        public string? State { get; set; }
 
         [Column(TypeName = "datetime")]
         public DateTime? TransactionTime { get; set; }
